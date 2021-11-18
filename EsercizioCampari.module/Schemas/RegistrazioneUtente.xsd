@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/RegistrazioneUtente" xmlns:tns="http://www.example.org/RegistrazioneUtente" elementFormDefault="qualified">
+
+    <element name="Registrazione" type="tns:RegistrazioneType"></element>
+    
+    <complexType name="RegistrazioneType">
+    	<sequence>
+    		<element name="ID" type="int"></element>
+    		<element name="Name" type="string"></element>
+    		<element name="Surname" type="string"></element>
+    		<element name="Street" type="string"></element>
+            <element name="City" type="string"></element>
+            <element name="ZipCode" type="string"></element>
+    		<element name="Username" type="string"></element>
+    		<element name="Password" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,12 @@
+{"records": [
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtente.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/RegistrazioneUtente"
+    },
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtente.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/ReadAndWrite"
+    }
+]}
