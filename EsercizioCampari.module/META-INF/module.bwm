@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="__wBFIEhkEeyYIa0FR7TYXA" targetNamespace="http://tns.tibco.com/bw/composite/EsercizioCampari.module" name="EsercizioCampari.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:property xmi:id="_AXpF0EhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_AX3IQEhlEeyYIa0FR7TYXA" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_AX7ZsEhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_AX-dAEhlEeyYIa0FR7TYXA" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_AYCHYEhlEeyYIa0FR7TYXA" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_AYFxwEhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_AYKDMEhlEeyYIa0FR7TYXA" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_AYNtkEhlEeyYIa0FR7TYXA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_AYR_AEhlEeyYIa0FR7TYXA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:component xmi:id="_AFYRIEhlEeyYIa0FR7TYXA" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_AFaGUEhlEeyYIa0FR7TYXA" processName="eserciziocampari.module.Process"/>
+  </sca:component>
+</sca:composite>
