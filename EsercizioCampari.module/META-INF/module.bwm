@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="__wBFIEhkEeyYIa0FR7TYXA" targetNamespace="http://tns.tibco.com/bw/composite/EsercizioCampari.module" name="EsercizioCampari.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="__wBFIEhkEeyYIa0FR7TYXA" targetNamespace="http://tns.tibco.com/bw/composite/EsercizioCampari.module" name="EsercizioCampari.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_oIDncEiHEeyYIa0FR7TYXA" name="ricercaauto" promote="ComponentRicercaAuto/ricercaauto">
+    <sca:interface.wsdl xmi:id="_oIH44EiHEeyYIa0FR7TYXA" interface="http://xmlns.example.com/20211118165308PLT#wsdl.interface(ricercaauto)" scaext:wsdlLocation="../Processes/eserciziocampari/module/RicercaAuto.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_oIOmkEiHEeyYIa0FR7TYXA" name="RestService" path="/ricercaauto/{check}/{category}" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="RicercaAuto" basePath="/" connector="eserciziocampari.module.RicercaAuto" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.module.RicercaAuto-RicercaAuto.json">
+      <operation xmi:id="_oIS4AEiHEeyYIa0FR7TYXA" operationName="post" nickname="post-ricercaauto" httpMethod="POST" notes="postRicercaAuto" responseStyle="element" requestStyle="element" outputPartName="Response">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_L3G9gEiLEeyYIa0FR7TYXA">
+        <parameterMapping xmi:id="_L3G9gUiLEeyYIa0FR7TYXA" parameterName="check" parameterType="Path" required="true"/>
+        <parameterMapping xmi:id="_L3G9gkiLEeyYIa0FR7TYXA" parameterName="category" parameterType="Path" dataType="string" required="true"/>
+      </parameters>
+      <advancedConfig xmi:id="_oIRC0EiHEeyYIa0FR7TYXA" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_oIS4AUiHEeyYIa0FR7TYXA" bindingName="RestService"/>
+  </sca:service>
   <sca:property xmi:id="_AXpF0EhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AX3IQEhlEeyYIa0FR7TYXA" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AX7ZsEhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
@@ -9,7 +24,10 @@
   <sca:property xmi:id="_AYKDMEhlEeyYIa0FR7TYXA" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AYNtkEhlEeyYIa0FR7TYXA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AYR_AEhlEeyYIa0FR7TYXA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
-  <sca:component xmi:id="_AFYRIEhlEeyYIa0FR7TYXA" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_AFaGUEhlEeyYIa0FR7TYXA" processName="eserciziocampari.module.Process"/>
+  <sca:component xmi:id="_oH7roEiHEeyYIa0FR7TYXA" name="ComponentRicercaAuto" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_oH7roUiHEeyYIa0FR7TYXA" processName="eserciziocampari.module.RicercaAuto"/>
+    <sca:service xmi:id="_oIAkIEiHEeyYIa0FR7TYXA" name="ricercaauto">
+      <sca:interface.wsdl xmi:id="_oIBLMEiHEeyYIa0FR7TYXA" interface="http://xmlns.example.com/20211118165308PLT#wsdl.interface(ricercaauto)" scaext:wsdlLocation="../Processes/eserciziocampari/module/RicercaAuto.bwp"/>
+    </sca:service>
   </sca:component>
 </sca:composite>

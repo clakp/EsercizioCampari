@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://xsd.tns.tibco.com/amf/models/sharedresource/jdbc" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:subject="http://xsd.tns.tibco.com/trinity/models/identity/subject" xmi:id="_DeM5MUiIEeyYIa0FR7TYXA" name="eserciziocampari.module.JDBCConnectionResource" type="jdbc:JdbcDataSource">
+  <jndi:reference xmi:id="_DeVcEEiIEeyYIa0FR7TYXA" key="subjectJndiName" type="subject:SubjectConfiguration" value=""/>
+  <jndi:configuration xsi:type="jdbc:JdbcDataSource" xmi:id="_DeVcEUiIEeyYIa0FR7TYXA" username="postgres" password="#!ejklx/U0Ni7P3+vsTr3d5CrGFBpuBSCoDRpeRVXp0ZA=">
+    <connectionConfig xsi:type="jdbc:NonXaConnection" xmi:id="_DeWqMEiIEeyYIa0FR7TYXA" jdbcDriver="org.postgresql.Driver" dbURL="jdbc:postgresql://localhost:5432/postgres"/>
+  </jndi:configuration>
+</jndi:namedResource>

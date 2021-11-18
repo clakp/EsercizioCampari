@@ -1,0 +1,98 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "RicercaAuto",
+    "description" : "RicercaAuto service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/ricercaauto/{check}/{category}" : {
+      "post" : {
+        "summary" : "postRicercaAuto",
+        "description" : "postRicercaAuto",
+        "operationId" : "post-ricercaauto",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/CheckUsername"
+          },
+          "required" : true
+        }, {
+          "name" : "check",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "category",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ShowCars to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ShowCars"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "CheckUsername" : {
+      "type" : "object",
+      "required" : [ "Username" ],
+      "properties" : {
+        "Username" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ShowCars" : {
+      "type" : "object",
+      "properties" : {
+        "ShopWindow" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ShopWindow",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "ShopWindow" : {
+      "type" : "object",
+      "required" : [ "Brand", "Category", "Surcharge", "Optional", "Price", "Model" ],
+      "properties" : {
+        "Brand" : {
+          "type" : "string"
+        },
+        "Model" : {
+          "type" : "string"
+        },
+        "Category" : {
+          "type" : "string"
+        },
+        "Optional" : {
+          "type" : "string"
+        },
+        "Surcharge" : {
+          "type" : "string"
+        },
+        "Price" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

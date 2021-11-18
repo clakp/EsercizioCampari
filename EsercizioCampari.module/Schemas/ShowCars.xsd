@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/ShowCars" xmlns:tns="http://www.example.org/ShowCars" elementFormDefault="qualified">
+
+    <element name="ShowCars" type="tns:ShowCarsType"></element>
+    
+    <complexType name="ShowCarsType">
+    	<sequence>
+    		<element name="ShopWindow" type="tns:ShopWindowType" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="ShopWindowType">
+    	<sequence>
+    		<element name="Brand" type="string"></element>
+    		<element name="Model" type="string"></element>
+    		<element name="Category" type="string"></element>
+    		<element name="Optional" type="string"></element>
+    		<element name="Surcharge" type="string"></element>
+    		<element name="Price" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>

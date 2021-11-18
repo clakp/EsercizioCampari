@@ -1,0 +1,12 @@
+{"records": [
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.RicercaAuto-RicercaAuto.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/CheckUsername"
+    },
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.RicercaAuto-RicercaAuto.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/ShowCars"
+    }
+]}
