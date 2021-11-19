@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://xsd.tns.tibco.com/amf/models/sharedresource/jdbc" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:subject="http://xsd.tns.tibco.com/trinity/models/identity/subject" xmi:id="_h3kLsUiFEeyp3Nf8UXD9nw" name="eserciziocampari.module.JDBCConnectionResource" type="jdbc:JdbcDataSource">
-  <jndi:reference xmi:id="_h3t8sEiFEeyp3Nf8UXD9nw" key="subjectJndiName" type="subject:SubjectConfiguration" value=""/>
-  <jndi:configuration xsi:type="jdbc:JdbcDataSource" xmi:id="_h3t8sUiFEeyp3Nf8UXD9nw" username="postgres" password="#!de3uOYHv0fpl6vRzFqa2F07c4hwcftpQ2yEdtB7mlf8=">
-    <connectionConfig xsi:type="jdbc:NonXaConnection" xmi:id="_h3vK0EiFEeyp3Nf8UXD9nw" jdbcDriver="tibcosoftwareinc.jdbc.mysql.MySQLDriver" dbURL="jdbc:tibcosoftwareinc:mysql://localhost:5432;DatabaseName=postgres"/>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://xsd.tns.tibco.com/amf/models/sharedresource/jdbc" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:subject="http://xsd.tns.tibco.com/trinity/models/identity/subject" xmi:id="_--O3EUkNEeyauP59_R0slw" name="eserciziocampari.module.JDBCConnectionResource" type="jdbc:JdbcDataSource">
+  <jndi:reference xmi:id="_--kOQEkNEeyauP59_R0slw" key="subjectJndiName" type="subject:SubjectConfiguration" value=""/>
+  <jndi:configuration xsi:type="jdbc:JdbcDataSource" xmi:id="_--kOQUkNEeyauP59_R0slw" username="postgres" password="#!frit5Ag7FyhAiZdehZqQNfGRj3pl4MPeR4HY8L1Cnj0=">
+    <connectionConfig xsi:type="jdbc:NonXaConnection" xmi:id="_--kOQkkNEeyauP59_R0slw" jdbcDriver="tibcosoftwareinc.jdbc.postgresql.PostgreSQLDriver" dbURL="jdbc:tibcosoftwareinc:postgresql://localhost:5432;DatabaseName=postgres"/>
   </jndi:configuration>
 </jndi:namedResource>

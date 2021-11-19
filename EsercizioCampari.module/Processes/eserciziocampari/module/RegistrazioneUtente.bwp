@@ -181,6 +181,20 @@
             <element name="jdbcUpdateActivityInput">
                 <complexType>
                     <sequence>
+                        <element maxOccurs="1" minOccurs="1" name="Name"
+                            nillable="true" type="string"/>
+                        <element maxOccurs="1" minOccurs="1"
+                            name="Surname" nillable="true" type="string"/>
+                        <element maxOccurs="1" minOccurs="1"
+                            name="Street" nillable="true" type="string"/>
+                        <element maxOccurs="1" minOccurs="1" name="City"
+                            nillable="true" type="string"/>
+                        <element maxOccurs="1" minOccurs="1"
+                            name="ZipCode" nillable="true" type="string"/>
+                        <element maxOccurs="1" minOccurs="1"
+                            name="Username" nillable="true" type="string"/>
+                        <element maxOccurs="1" minOccurs="1"
+                            name="Password" nillable="true" type="string"/>
                         <element maxOccurs="1" minOccurs="0"
                             name="ServerTimeZone" type="string"/>
                         <element maxOccurs="1" minOccurs="0"
@@ -596,8 +610,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.2"/>
 
                                     <layoutConstraint
-                                    x="250"
-                                    xsi:type="notation:Bounds" y="43"/>
+                                    x="245"
+                                    xsi:type="notation:Bounds" y="44"/>
                                     </children>
 
                                     <children type="4002 bw.jdbc.update">
@@ -699,10 +713,9 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity"/>
 
                                     <layoutConstraint
-                                    height="-45"
-                                    width="-76"
-                                    x="30"
-                                    xsi:type="notation:Bounds" y="20"/>
+                                    height="192"
+                                    width="389"
+                                    x="15" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -715,7 +728,9 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity"/>
 
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    <layoutConstraint
+                                    height="216"
+                                    width="429" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -774,8 +789,9 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0"/>
                                     <layoutConstraint
-                                    height="140"
-                                    width="485" xsi:type="notation:Bounds"/>
+                                    height="235"
+                                    width="491"
+                                    x="2" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -787,7 +803,7 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint
-                                    height="265" width="561" xsi:type="notation:Bounds"/>
+                                    height="265" width="510" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -802,7 +818,7 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity"/>
                                     <layoutConstraint height="384"
-                                    width="518" xsi:type="notation:Bounds"/>
+                                    width="520" xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
                                 <styles xsi:type="notation:FilteringStyle"/>
@@ -811,7 +827,7 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity"/>
-                            <layoutConstraint height="384" width="521" xsi:type="notation:Bounds"/>
+                            <layoutConstraint height="384" width="523" xsi:type="notation:Bounds"/>
                         </children>
                         <styles xsi:type="notation:SortingStyle"/>
                         <styles xsi:type="notation:FilteringStyle"/>
@@ -821,7 +837,7 @@
                     <styles xsi:type="bwnotation:BackgroundStyle"/>
                     <styles xsi:type="bwnotation:ResizingStyle"/>
                     <element href="//0/@process/@activity"/>
-                    <layoutConstraint height="408" width="521" x="1"
+                    <layoutConstraint height="408" width="523" x="1"
                         xsi:type="notation:Bounds" y="1"/>
                 </children>
                 <styles xsi:type="notation:SortingStyle"/>
@@ -830,11 +846,30 @@
             </children>
             <styles fontName="Segoe UI" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="460" width="863" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="460" width="865" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
+        <edges
+            source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.1/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.1"
+            target="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.1/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@links/@children.0"/>
+            <bendpoints points="[25, -1, -231, 0]$[232, 0, -24, 1]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
     </notation:Diagram>
+    <tibex:NamespaceRegistry enabled="true">
+        <tibex:namespaceItem
+            namespace="http://www.example.org/RegistrazioneUtente" prefix="tns1"/>
+        <tibex:namespaceItem
+            namespace="http://www.tibco.com/namespaces/tnt/plugins/jdbc+def85487-9615-4a59-bd0b-9e7dc482bd55+input" prefix="tns"/>
+        <tibex:namespaceItem
+            namespace="http://xmlns.example.com/20211118163601PLT" prefix="tns2"/>
+    </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/ReadAndWrite"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/RegistrazioneUtente"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/REST"/>
@@ -857,7 +892,11 @@
         <bpws:variable element="ns0:ErrorReport" name="_error" sca-bpel:internal="true"/>
         <bpws:variable name="jdbcProperty" sca-bpel:hotUpdate="false"
             sca-bpel:privateProperty="true" sca-bpel:property="yes"
-            sca-bpel:sharedResourceType="{http://xsd.tns.tibco.com/amf/models/sharedresource/jdbc}JdbcDataSource" type="xsd:string"/>
+            sca-bpel:sharedResourceType="{http://xsd.tns.tibco.com/amf/models/sharedresource/jdbc}JdbcDataSource" type="xsd:string">
+            <bpws:from>
+                <bpws:literal>eserciziocampari.module.JDBCConnectionResource</bpws:literal>
+            </bpws:from>
+        </bpws:variable>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -877,7 +916,9 @@
                     tibex:xpdlId="cbf091ec-50ad-4c20-a615-48d536f40687" variable="post">
                     <bpws:scope name="scope1">
                         <bpws:flow name="flow1">
-                            <bpws:links/>
+                            <bpws:links>
+                                <bpws:link name="JDBCUpdateTopostOut" tibex:linkType="SUCCESS"/>
+                            </bpws:links>
                             <bpws:empty name="OnMessageStart"
                                 tibex:constructor="onMessageStart" tibex:xpdlId="b9e8111d-544d-4143-9fae-62e24dab6445"/>
                             <bpws:empty name="OnMessageEnd"
@@ -888,18 +929,28 @@
                                 tibex:xpdlId="5bbb0cce-316a-45d3-ab21-aee2761af2f2" variable="postOut-input">
                                 <tibex:inputBindings>
                                     <tibex:partBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?> &lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://xmlns.example.com/20211118163601PLT&quot; version=&quot;2.0&quot;> &lt;xsl:template name=&quot;postOut-input&quot; match=&quot;/&quot;> &lt;tns:postResponse/> &lt;/xsl:template> &lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://xmlns.example.com/20211118163601PLT&quot; xmlns:tns=&quot;http://www.example.org/ReadAndWrite&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;postOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns:Output>&#xa;            &lt;xsl:value-of select=&quot;&amp;quot;Registrazione Effettuata Correttamente&amp;quot;&quot;/>&#xa;        &lt;/tns:Output>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                 </tibex:inputBindings>
+                                <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns2="http://xmlns.example.com/20211118163601PLT" xmlns:tns="http://www.example.org/ReadAndWrite" version="2.0"&gt;&lt;xsl:template name="postOut-input" match="/"&gt;&lt;tns2:postResponse&gt;&lt;Feedback&gt;&lt;tns:Output&gt;&lt;xsl:value-of select="&amp;quot;Registrazione Effettuata Correttamente&amp;quot;"/&gt;&lt;/tns:Output&gt;&lt;/Feedback&gt;&lt;/tns2:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+                                <bpws:targets>
+                                    <bpws:target linkName="JDBCUpdateTopostOut"/>
+                                </bpws:targets>
                             </bpws:reply>
                             <bpws:extensionActivity>
                                 <tibex:activityExtension
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+def85487-9615-4a59-bd0b-9e7dc482bd55+input&quot; xmlns:tns1=&quot;http://www.example.org/RegistrazioneUtente&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;JDBCUpdate-input&quot; match=&quot;/&quot;>&lt;tns:jdbcUpdateActivityInput>&lt;Name>&lt;xsl:value-of select=&quot;$post/Registrazione/tns1:Registrazione/tns1:Name&quot;/>&lt;/Name>&lt;Surname>&lt;xsl:value-of select=&quot;$post/Registrazione/tns1:Registrazione/tns1:Surname&quot;/>&lt;/Surname>&lt;Street>&lt;xsl:value-of select=&quot;$post/Registrazione/tns1:Registrazione/tns1:Street&quot;/>&lt;/Street>&lt;City>&lt;xsl:value-of select=&quot;$post/Registrazione/tns1:Registrazione/tns1:City&quot;/>&lt;/City>&lt;ZipCode>&lt;xsl:value-of select=&quot;$post/Registrazione/tns1:Registrazione/tns1:ZipCode&quot;/>&lt;/ZipCode>&lt;Username>&lt;xsl:value-of select=&quot;$post/Registrazione/tns1:Registrazione/tns1:Username&quot;/>&lt;/Username>&lt;Password>&lt;xsl:value-of select=&quot;$post/Registrazione/tns1:Registrazione/tns1:Password&quot;/>&lt;/Password>&lt;/tns:jdbcUpdateActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>"
+                                    expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
                                     inputVariable="JDBCUpdate-input"
                                     name="JDBCUpdate"
                                     outputVariable="JDBCUpdate"
                                     tibex:xpdlId="def85487-9615-4a59-bd0b-9e7dc482bd55" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                                    <bpws:sources>
+                                    <bpws:source linkName="JDBCUpdateTopostOut"/>
+                                    </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?> &lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+def85487-9615-4a59-bd0b-9e7dc482bd55+input&quot; version=&quot;2.0&quot;> &lt;xsl:template name=&quot;JDBCUpdate-input&quot; match=&quot;/&quot;> &lt;tns:jdbcUpdateActivityInput/>&lt;/xsl:template> &lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+def85487-9615-4a59-bd0b-9e7dc482bd55+input&quot; xmlns:tns1=&quot;http://www.example.org/RegistrazioneUtente&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.Registrazione&quot;/>&#xa;    &lt;xsl:template name=&quot;JDBCUpdate-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns:jdbcUpdateActivityInput>&#xa;            &lt;Name>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Name&quot;/>&#xa;            &lt;/Name>&#xa;            &lt;Surname>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Surname&quot;/>&#xa;            &lt;/Surname>&#xa;            &lt;Street>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Street&quot;/>&#xa;            &lt;/Street>&#xa;            &lt;City>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:City&quot;/>&#xa;            &lt;/City>&#xa;            &lt;ZipCode>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:ZipCode&quot;/>&#xa;            &lt;/ZipCode>&#xa;            &lt;Username>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Username&quot;/>&#xa;            &lt;/Username>&#xa;            &lt;Password>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Password&quot;/>&#xa;            &lt;/Password>&#xa;        &lt;/tns:jdbcUpdateActivityInput>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:config>
                                     <bwext:BWActivity
@@ -913,7 +964,37 @@
                                     <type href="http://ns.tibco.com/bw/palette/jdbc#//JDBCUpdateActivity"/>
                                     <value
                                     sharedResourceProperty="jdbcProperty"
-                                    timeout="10" xsi:type="jdbcPalette:JDBCUpdateActivity"/>
+                                    sqlStatement="INSERT INTO &quot;EsercizioCampari&quot;.&quot;user&quot; (&quot;name&quot;,surname,street,city,zipcode,username,&quot;password&quot;)&#xa;&#x9;VALUES (?,?,?,?,?,?,?);&#xa;"
+                                    timeout="10" xsi:type="jdbcPalette:JDBCUpdateActivity">
+
+                                    <PreparedParameters
+                                    DataType="12"
+                                    DataTypeDisplayValue="VARCHAR" ParameterName="Name"/>
+
+                                    <PreparedParameters
+                                    DataType="12"
+                                    DataTypeDisplayValue="VARCHAR" ParameterName="Surname"/>
+
+                                    <PreparedParameters
+                                    DataType="12"
+                                    DataTypeDisplayValue="VARCHAR" ParameterName="Street"/>
+
+                                    <PreparedParameters
+                                    DataType="12"
+                                    DataTypeDisplayValue="VARCHAR" ParameterName="City"/>
+
+                                    <PreparedParameters
+                                    DataType="12"
+                                    DataTypeDisplayValue="VARCHAR" ParameterName="ZipCode"/>
+
+                                    <PreparedParameters
+                                    DataType="12"
+                                    DataTypeDisplayValue="VARCHAR" ParameterName="Username"/>
+
+                                    <PreparedParameters
+                                    DataType="12"
+                                    DataTypeDisplayValue="VARCHAR" ParameterName="Password"/>
+                                    </value>
                                     </properties>
                                     </activityConfig>
                                     </bwext:BWActivity>

@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "version" : "1.0",
-    "title" : "RegistrazioneUtente/",
+    "title" : "RegistrazioneUtente{Name}",
     "description" : "RegistrazioneUtente service"
   },
   "host" : "localhost:8080",
