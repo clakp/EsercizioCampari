@@ -12,6 +12,7 @@
     xmlns:ns3="http://www.example.org/ShowCars"
     xmlns:ns4="http://www.example.org/InvalidUser"
     xmlns:ns5="http://www.example.org/NoResults"
+    xmlns:ns6="http://tns.tibco.com/bw/palette/internal/activityerror+39845cb5-eaa2-4aa8-916c-d58c9f1fbad1"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -194,6 +195,21 @@
             </xs:complexType>
             <xs:element name="ActivityInput" type="tns:LogParametersType"/>
         </xs:schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+39845cb5-eaa2-4aa8-916c-d58c9f1fbad1"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="http://www.example.org/InvalidUser"
+            xmlns:Q2="http://www.example.org/NoResults" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+39845cb5-eaa2-4aa8-916c-d58c9f1fbad1">
+            <import namespace="http://www.example.org/NoResults"/>
+            <import namespace="http://www.example.org/InvalidUser"/>
+            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
+            <complexType name="ActivityErrorDataType">
+                <choice>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:InvalidUser"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q2:NoResults"/>
+                </choice>
+            </complexType>
+        </schema>
         <wsdl:definitions
             targetNamespace="http://xmlns.example.com/20211119142742PLT"
             xmlns:extns="http://tns.tibco.com/bw/REST"
@@ -1274,6 +1290,9 @@
         <bpws:variable messageType="ns:postResponse" name="Reply-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:ActivityInput" name="Log3-input" sca-bpel:internal="true"/>
         <bpws:variable messageType="ns:postResponse" name="Reply1-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns6:ActivityErrorData"
+            name="_error_RicercaAutoOrchestration" sca-bpel:internal="true"/>
+        <bpws:variable element="ns0:ErrorReport" name="_error" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>

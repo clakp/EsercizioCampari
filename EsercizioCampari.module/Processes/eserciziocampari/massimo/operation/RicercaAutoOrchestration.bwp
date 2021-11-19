@@ -9,6 +9,7 @@
     xmlns:ns0="http://www.tibco.com/namespaces/tnt/plugins/jdbc+2c9d9502-eaf5-4840-82b0-a2b622a3f77b+input"
     xmlns:ns1="http://www.tibco.com/namespaces/tnt/plugins/jdbc+2c9d9502-eaf5-4840-82b0-a2b622a3f77b+output"
     xmlns:ns10="http://tns.tibco.com/bw/palette/internal/activityerror+b0c7886a-7f41-48ad-8c28-72c5199d27eb"
+    xmlns:ns11="http://tns.tibco.com/bw/palette/internal/activityerror+bw.internal.end"
     xmlns:ns2="http://tns.tibco.com/bw/palette/internal/activityerror+bw.jdbc.JDBCQuery"
     xmlns:ns3="http://www.example.org/parameters"
     xmlns:ns4="http://www.tibco.com/pe/WriteToLogActivitySchema"
@@ -232,6 +233,21 @@
             <complexType name="ActivityErrorDataType">
                 <choice>
                     <element maxOccurs="1" minOccurs="0" ref="Q1:InvalidUser"/>
+                </choice>
+            </complexType>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.internal.end"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="http://www.example.org/InvalidUser"
+            xmlns:Q2="http://www.example.org/NoResults" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.internal.end">
+            <import namespace="http://www.example.org/NoResults"/>
+            <import namespace="http://www.example.org/InvalidUser"/>
+            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
+            <complexType name="ActivityErrorDataType">
+                <choice>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:InvalidUser"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q2:NoResults"/>
                 </choice>
             </complexType>
         </schema>
@@ -915,6 +931,10 @@
         <bpws:variable element="ns3:parameters"
             name="CheckUsername-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns3:parameters" name="CheckUsername" sca-bpel:internal="true"/>
+        <bpws:variable element="ns11:ActivityErrorData"
+            name="_error_End" sca-bpel:internal="true"/>
+        <bpws:variable element="ns8:ActivityErrorData"
+            name="_error_Rethrow1" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
