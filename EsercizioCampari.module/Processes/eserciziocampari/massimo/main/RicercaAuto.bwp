@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="eserciziocampari.module.main.RicercaAuto"
+    name="eserciziocampari.massimo.main.RicercaAuto"
     suppressJoinFailure="yes"
     targetNamespace="http://xmlns.example.com/20211119142742"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
@@ -226,7 +226,7 @@
             </wsdl:message>
             <wsdl:portType name="check" tibex:bw.rest.apipath="/check"
                 tibex:bw.rest.basepath="RicercaAuto"
-                tibex:bw.rest.resource="Service Descriptors/eserciziocampari.module.main.RicercaAuto-RicercaAuto.json"
+                tibex:bw.rest.resource="Service Descriptors/eserciziocampari.massimo.main.RicercaAuto-RicercaAuto.json"
                 tibex:bw.rest.resource.source="generated" tibex:source="bw.rest.service">
                 <wsdl:documentation>RicercaAuto service</wsdl:documentation>
                 <wsdl:operation name="post">
@@ -1538,7 +1538,7 @@
                                     expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/CheckUsername&quot; xmlns:tns1=&quot;http://www.example.org/parameters&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.Request&quot;/>&#xa;    &lt;xsl:template name=&quot;RicercaAutoOrchestration-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns1:parameters>&#xa;            &lt;xsl:if test=&quot;$post.Request/tns:Username&quot;>&#xa;                &lt;tns1:username>&#xa;                    &lt;xsl:value-of select=&quot;$post.Request/tns:Username&quot;/>&#xa;                &lt;/tns1:username>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$post.Request/tns:Category&quot;>&#xa;                &lt;tns1:category>&#xa;                    &lt;xsl:value-of select=&quot;$post.Request/tns:Category&quot;/>&#xa;                &lt;/tns1:category>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$post.Request/tns:Password&quot;>&#xa;                &lt;tns1:password>&#xa;                    &lt;xsl:value-of select=&quot;$post.Request/tns:Password&quot;/>&#xa;                &lt;/tns1:password>&#xa;            &lt;/xsl:if>&#xa;        &lt;/tns1:parameters>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
-                                    subProcessName="eserciziocampari.module.operation.RicercaAutoOrchestration" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                                    subProcessName="eserciziocampari.massimo.operation.RicercaAutoOrchestration" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                                 </tibex:extActivity>
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>

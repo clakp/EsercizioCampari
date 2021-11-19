@@ -22,7 +22,7 @@
   <sca:property xmi:id="_AYNtkEhlEeyYIa0FR7TYXA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AYR_AEhlEeyYIa0FR7TYXA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:component xmi:id="_eXaxkEk8EeyhuZ9ai5GdRA" name="ComponentRicercaAuto" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_eXaxkUk8EeyhuZ9ai5GdRA" processName="eserciziocampari.module.main.RicercaAuto"/>
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_eXaxkUk8EeyhuZ9ai5GdRA" processName="eserciziocampari.massimo.main.RicercaAuto"/>
     <sca:service xmi:id="_eXgRIEk8EeyhuZ9ai5GdRA" name="check">
       <sca:interface.wsdl xmi:id="_eXgRIUk8EeyhuZ9ai5GdRA" interface="http://xmlns.example.com/20211119142742PLT#wsdl.interface(check)" scaext:wsdlLocation="../Processes/eserciziocampari/module/main/RicercaAuto.bwp"/>
     </sca:service>
