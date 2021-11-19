@@ -9,7 +9,7 @@
   "basePath" : "/",
   "schemes" : [ "http" ],
   "paths" : {
-    "/registrazioneutente" : {
+    "/registrazioneutente/{name}/{surname}/{street}/{city}/{zipcode}/{username}/{password}" : {
       "post" : {
         "summary" : "postRegistrazioneUtente",
         "description" : "postRegistrazioneUtente",
@@ -23,6 +23,48 @@
           "schema" : {
             "$ref" : "#/definitions/Registrazione"
           },
+          "required" : true
+        }, {
+          "name" : "zipcode",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "password",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "city",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "surname",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "street",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "name",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        }, {
+          "name" : "username",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
           "required" : true
         } ],
         "responses" : {

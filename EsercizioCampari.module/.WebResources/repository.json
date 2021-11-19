@@ -4,18 +4,8 @@
         "items": [],
         "url": "https://integration.cloud.tibco.com:443"
     }],
-    "resources": [
-        {
-            "location": "Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtente.json",
-            "type": "generated"
-        },
-        {
-            "location": "Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtenteName.json",
-            "type": "generated"
-        },
-        {
-            "location": "Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtente-Name.json",
-            "type": "generated"
-        }
-    ]
+    "resources": [{
+        "location": "Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtente.json",
+        "type": "generated"
+    }]
 }
