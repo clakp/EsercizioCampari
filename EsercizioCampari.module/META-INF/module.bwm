@@ -22,7 +22,7 @@
   <sca:property xmi:id="_AYNtkEhlEeyYIa0FR7TYXA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AYR_AEhlEeyYIa0FR7TYXA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:component xmi:id="_PCYOYEiFEeyp3Nf8UXD9nw" name="ComponentRegistrazioneUtente" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_PCYOYUiFEeyp3Nf8UXD9nw" processName="eserciziocampari.module.RegistrazioneUtente"/>
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_PCYOYUiFEeyp3Nf8UXD9nw" processName="main.RegistrazioneUtente"/>
     <sca:service xmi:id="_PDfBoEiFEeyp3Nf8UXD9nw" name="registrazioneutente">
       <sca:interface.wsdl xmi:id="_PDlIQEiFEeyp3Nf8UXD9nw" interface="http://xmlns.example.com/20211118163601PLT#wsdl.interface(registrazioneutente)" scaext:wsdlLocation="../Processes/eserciziocampari/module/RegistrazioneUtente.bwp"/>
     </sca:service>
