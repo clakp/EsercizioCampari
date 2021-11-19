@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/CheckUsername" xmlns:tns="http://www.example.org/CheckUsername" elementFormDefault="qualified">
+
+    <element name="CheckUsername" type="tns:CheckUsernameType"></element>
+    
+    <complexType name="CheckUsernameType">
+    	<sequence>
+    		<element name="Username" type="string" minOccurs="0" maxOccurs="1"></element>
+    		<element name="Password" type="string" minOccurs="0" maxOccurs="1"></element>
+    		<element name="Category" type="string" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>
