@@ -9,7 +9,10 @@
     		<element name="ShopWindow" type="tns:ShopWindowType"
     			minOccurs="0" maxOccurs="unbounded">
     		</element>
-    		<element name="NoAccess" type="Q1:InvalidUserType" minOccurs="0" maxOccurs="1"></element>
+    		<element name="NoAccess" type="Q1:InvalidUserType"
+    			minOccurs="0" maxOccurs="1">
+    		</element>
+    		<element name="NoMatching" type="string" minOccurs="0" maxOccurs="1"></element>
     	</sequence>
     </complexType>
 
@@ -25,8 +28,4 @@
     </complexType>
 
     
-    <complexType name="FaultType">
-    	<sequence>
-    	</sequence>
-    </complexType>
 </schema>

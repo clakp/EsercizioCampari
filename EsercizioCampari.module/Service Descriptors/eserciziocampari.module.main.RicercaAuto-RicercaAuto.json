@@ -13,7 +13,7 @@
       "post" : {
         "summary" : "postRicercaAuto",
         "description" : "postRicercaAuto",
-        "operationId" : "post-ricercaauto",
+        "operationId" : "post-check",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -63,6 +63,9 @@
         },
         "NoAccess" : {
           "$ref" : "#/definitions/InvalidUserType"
+        },
+        "NoMatching" : {
+          "type" : "string"
         }
       }
     },

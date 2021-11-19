@@ -14,6 +14,7 @@
     xmlns:ns13="http://tns.tibco.com/bw/palette/internal/activityerror+bw.internal.end"
     xmlns:ns14="http://tns.tibco.com/bw/palette/internal/activityerror+com.tibco.bw.core.design.process.editor.Activity_4002_Throw"
     xmlns:ns15="http://tns.tibco.com/bw/palette/internal/activityerror+com.tibco.bw.core.design.process.editor.Activity_4002_Rethrow"
+    xmlns:ns16="http://www.example.org/InvalidUser"
     xmlns:ns2="http://www.tibco.com/namespaces/tnt/plugins/jdbc+a91ce78f-bf37-46a0-ba88-45a3092a9527+input"
     xmlns:ns3="http://www.tibco.com/namespaces/tnt/plugins/jdbc+a91ce78f-bf37-46a0-ba88-45a3092a9527+output"
     xmlns:ns4="http://tns.tibco.com/bw/palette/internal/activityerror+bw.jdbc.JDBCQuery"
@@ -393,7 +394,7 @@
         input="{http://www.example.org/parameters}parameters" output="{http://www.example.org/parameters}parameters">
         <tibex:errorList>
             <tibex:error
-                error="{http://www.example.org/ErrorSchema}ErrorSchema" name="ErrorSchema"/>
+                error="{http://www.example.org/InvalidUser}InvalidUser" name="InvalidUser"/>
         </tibex:errorList>
     </tibex:ProcessInterface>
     <tibex:ProcessTemplateConfigurations/>
@@ -584,7 +585,7 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity"/>
-                            <layoutConstraint height="359" width="539" xsi:type="notation:Bounds"/>
+                            <layoutConstraint height="423" width="539" xsi:type="notation:Bounds"/>
                         </children>
                         <children type="4022">
                             <children type="3022">
@@ -644,10 +645,9 @@
                                     <layoutConstraint
                                     height="40"
                                     width="40"
-                                    x="-12"
-                                    xsi:type="notation:Bounds" y="56"/>
+                                    xsi:type="notation:Bounds" y="61"/>
                                     </children>
-                                    <children type="4002 com.tibco.bw.core.design.process.editor.Activity_4002_Rethrow">
+                                    <children type="4002">
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
@@ -685,10 +685,8 @@
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@faultHandlers/@catch.0/@activity/@activity/@activities.1"/>
                                     <layoutConstraint
-                                    height="40"
-                                    width="40"
-                                    x="78"
-                                    xsi:type="notation:Bounds" y="56"/>
+                                    x="176"
+                                    xsi:type="notation:Bounds" y="61"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -711,11 +709,9 @@
                                     <styles fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
                                     <styles xsi:type="bwnotation:BackgroundStyle"/>
-                                    <styles restoreHeight="178"
-                                    restoreWidth="489" xsi:type="bwnotation:ResizingStyle"/>
+                                    <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@faultHandlers/@catch.0"/>
-                                    <layoutConstraint height="178"
-                                    width="489" xsi:type="notation:Bounds"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
                                 <styles xsi:type="notation:FilteringStyle"/>
@@ -724,8 +720,7 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity/@faultHandlers"/>
-                            <layoutConstraint height="200" width="499"
-                                x="22" xsi:type="notation:Bounds" y="394"/>
+                            <layoutConstraint height="200" width="444" xsi:type="notation:Bounds"/>
                         </children>
                         <styles xsi:type="notation:SortingStyle"/>
                         <styles xsi:type="notation:FilteringStyle"/>
@@ -735,7 +730,7 @@
                     <styles xsi:type="bwnotation:BackgroundStyle"/>
                     <styles xsi:type="bwnotation:ResizingStyle"/>
                     <element href="//0/@process/@activity"/>
-                    <layoutConstraint height="595" width="539" x="1"
+                    <layoutConstraint height="659" width="539" x="1"
                         xsi:type="notation:Bounds" y="1"/>
                 </children>
                 <styles xsi:type="notation:SortingStyle"/>
@@ -744,7 +739,7 @@
             </children>
             <styles fontName="Segoe UI" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="647" width="881" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="711" width="881" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
@@ -810,9 +805,12 @@
             namespace="http://www.example.org/ErrorSchema" prefix="tns5"/>
         <tibex:namespaceItem
             namespace="http://tns.tibco.com/bw/activity/sendhttprequest/input+6d5d8592-80dd-4418-bba1-3af0a68ed1e0+RequestActivityInput" prefix="tns6"/>
+        <tibex:namespaceItem
+            namespace="http://www.example.org/InvalidUser" prefix="tns7"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/parameters"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/ErrorSchema"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/InvalidUser"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
@@ -833,8 +831,7 @@
         <bpws:variable element="ns:ErrorReport" name="_error" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:parameters" name="End-input"
             sca-bpel:internal="true" tibex:parameter="out"/>
-        <bpws:variable element="ns7:ErrorSchema" name="Throw-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns6:ActivityInput" name="Log-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns16:InvalidUser" name="Throw-input" sca-bpel:internal="true"/>
         <bpws:variable name="httpClientResource"
             sca-bpel:hotUpdate="false" sca-bpel:privateProperty="true"
             sca-bpel:property="yes"
@@ -849,6 +846,7 @@
             name="_error_Throw" sca-bpel:internal="true"/>
         <bpws:variable element="ns15:ActivityErrorData"
             name="_error_Rethrow" sca-bpel:internal="true"/>
+        <bpws:variable element="ns6:ActivityInput" name="Log-input" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -860,8 +858,8 @@
     </bpws:extensions>
     <bpws:scope name="scope">
         <bpws:faultHandlers>
-            <bpws:catch faultElement="ns7:ErrorSchema"
-                faultName="ns7:ErrorSchema" faultVariable="ErrorSchema" tibex:xpdlId="6fd52ca4-c79b-4c4b-b059-1eebcd63f4d2">
+            <bpws:catch faultElement="ns16:InvalidUser"
+                faultName="ns16:InvalidUser" faultVariable="InvalidUser" tibex:xpdlId="f34421e0-708d-41fb-980d-8bbe799d0466">
                 <bpws:scope name="scope1">
                     <bpws:flow name="flow1">
                         <bpws:links>
@@ -870,7 +868,7 @@
                         <bpws:extensionActivity>
                             <tibex:activityExtension
                                 inputVariable="Log-input" name="Log"
-                                tibex:xpdlId="d21bc545-3b36-4aa2-bb44-f12e9ce35e16" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                                tibex:xpdlId="f2d6a7b3-fdc4-464b-a197-ab28193599bd" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                 <bpws:sources>
                                     <bpws:source linkName="LogToRethrow"/>
                                 </bpws:sources>
@@ -898,7 +896,7 @@
                                 </tibex:config>
                             </tibex:activityExtension>
                         </bpws:extensionActivity>
-                        <bpws:rethrow name="Rethrow" tibex:xpdlId="d473a961-22a0-4786-9069-6d777761850f">
+                        <bpws:rethrow name="Rethrow" tibex:xpdlId="d30acf0e-6849-41bf-9c80-1863bc218863">
                             <bpws:targets>
                                 <bpws:target linkName="LogToRethrow"/>
                             </bpws:targets>
@@ -1014,13 +1012,11 @@
                     </tibex:config>
                 </tibex:activityExtension>
             </bpws:extensionActivity>
-            <bpws:throw faultName="ns7:ErrorSchema"
+            <bpws:throw faultName="ns16:InvalidUser"
                 faultVariable="Throw-input" name="Throw" tibex:xpdlId="2c379bfd-29c7-4136-bb79-4867f0045475">
-                <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns5="http://www.example.org/ErrorSchema" version="2.0"&gt;&lt;xsl:param name="JDBCQuery"/&gt;&lt;xsl:template name="Throw-input" match="/"&gt;&lt;tns5:ErrorSchema&gt;&lt;xsl:if test="$JDBCQuery/Record/username"&gt;&lt;tns5:InvalidUser&gt;&lt;xsl:value-of select="$JDBCQuery/Record/username"/&gt;&lt;/tns5:InvalidUser&gt;&lt;/xsl:if&gt;&lt;/tns5:ErrorSchema&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
                 <tibex:inputBindings>
                     <tibex:partBinding
-                        expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.example.org/ErrorSchema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;Throw-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns5:ErrorSchema/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                        expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns7=&quot;http://www.example.org/InvalidUser&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;JDBCQuery&quot;/>&lt;xsl:template name=&quot;Throw-input&quot; match=&quot;/&quot;>&lt;tns7:InvalidUser>&lt;tns7:DenyAccess>&lt;xsl:value-of select=&quot;$JDBCQuery/Record/username&quot;/>&lt;/tns7:DenyAccess>&lt;tns7:TryRegistration>&lt;xsl:value-of select=&quot;$JDBCQuery/Record/password&quot;/>&lt;/tns7:TryRegistration>&lt;/tns7:InvalidUser>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                 </tibex:inputBindings>
                 <bpws:targets>
                     <bpws:target linkName="JDBCQueryToThrow"/>
