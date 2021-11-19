@@ -726,7 +726,7 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity"/>
 
                                     <layoutConstraint
-                                    height="162"
+                                    height="248"
                                     width="707"
                                     x="15" xsi:type="notation:Bounds"/>
                                     </children>
@@ -894,7 +894,7 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity"/>
 
                                     <layoutConstraint
-                                    height="398"
+                                    height="449"
                                     width="747" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -958,7 +958,7 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0"/>
                                     <layoutConstraint
-                                    height="417"
+                                    height="468"
                                     width="809"
                                     x="2" xsi:type="notation:Bounds"/>
                                     </children>
@@ -972,7 +972,7 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint
-                                    height="447" width="510" xsi:type="notation:Bounds"/>
+                                    height="498" width="510" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -1016,7 +1016,7 @@
             </children>
             <styles fontName="Segoe UI" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="747" width="1183" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="676" width="1183" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
@@ -1080,6 +1080,8 @@
             namespace="http://xmlns.example.com/RegistrazioneUtente//parameters" prefix="tns5"/>
         <tibex:namespaceItem
             namespace="http://www.tibco.com/namespaces/tnt/plugins/jdbc+d109021b-2b44-4902-affb-2f7446648709+input" prefix="tns6"/>
+        <tibex:namespaceItem
+            namespace="http://www.example.org/ReadAndWrite" prefix="tns7"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/ReadAndWrite"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/RegistrazioneUtente"/>
@@ -1147,10 +1149,10 @@
                                     portType="ns:registrazioneutente"
                                     tibex:xpdlId="02bc0f1d-255d-4f1a-89ce-13058693b94d" variable="Reply-input1">
                                     <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns2="http://xmlns.example.com/20211118163601PLT" xmlns:tns="http://www.example.org/ReadAndWrite" version="2.0"&gt;&lt;xsl:template name="Reply-input1" match="/"&gt;&lt;tns2:postResponse&gt;&lt;Feedback&gt;&lt;tns:Output&gt;&lt;xsl:value-of select="&amp;quot;Username esiste già&amp;quot;"/&gt;&lt;/tns:Output&gt;&lt;/Feedback&gt;&lt;/tns2:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns2="http://xmlns.example.com/20211118163601PLT" xmlns:tns7="http://www.example.org/ReadAndWrite" version="2.0"&gt;&lt;xsl:param name="Output"/&gt;&lt;xsl:template name="Reply-input1" match="/"&gt;&lt;tns2:postResponse&gt;&lt;Feedback&gt;&lt;tns7:Output&gt;&lt;xsl:value-of select="$Output"/&gt;&lt;/tns7:Output&gt;&lt;/Feedback&gt;&lt;/tns2:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
                                     <tibex:inputBindings>
                                     <tibex:partBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://xmlns.example.com/20211118163601PLT&quot; xmlns:tns=&quot;http://www.example.org/ReadAndWrite&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;Reply-input1&quot; match=&quot;/&quot;>&#xa;        &lt;tns:Output>&#xa;            &lt;xsl:value-of select=&quot;&amp;quot;Username esiste già&amp;quot;&quot;/>&#xa;        &lt;/tns:Output>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://xmlns.example.com/20211118163601PLT&quot; xmlns:tns7=&quot;http://www.example.org/ReadAndWrite&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;Output&quot;/>&#xa;    &lt;xsl:template name=&quot;Reply-input1&quot; match=&quot;/&quot;>&#xa;        &lt;tns7:Output>&#xa;            &lt;xsl:value-of select=&quot;$Output&quot;/>&#xa;        &lt;/tns7:Output>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <bpws:correlations/>
                                     </bpws:reply>
