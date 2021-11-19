@@ -14,7 +14,7 @@
   </sca:service>
   <sca:service xmi:id="_eXg4MEk8EeyhuZ9ai5GdRA" name="check" promote="ComponentRicercaAuto/check">
     <sca:interface.wsdl xmi:id="_eXg4NEk8EeyhuZ9ai5GdRA" interface="http://xmlns.example.com/20211119142742PLT#wsdl.interface(check)" scaext:wsdlLocation="../Processes/eserciziocampari/module/main/RicercaAuto.bwp"/>
-    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_eXseYEk8EeyhuZ9ai5GdRA" name="RestService" path="/check" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="RicercaAuto" basePath="/" connector="eserciziocampari.module.RicercaAuto" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.module.main.RicercaAuto-RicercaAuto.json">
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_eXseYEk8EeyhuZ9ai5GdRA" name="RestService" path="/check" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="RicercaAuto" basePath="/" connector="eserciziocampari.module.RegistrazioneUtente" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.module.main.RicercaAuto-RicercaAuto.json">
       <operation xmi:id="_eXtFcEk8EeyhuZ9ai5GdRA" operationName="post" nickname="post-check" httpMethod="POST" notes="postRicercaAuto" responseStyle="element" requestStyle="element" outputPartName="Response">
         <clientFormat>json</clientFormat>
         <clientRequestFormat>json</clientRequestFormat>

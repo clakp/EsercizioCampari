@@ -18,18 +18,6 @@
             "type": "generated"
         },
         {
-            "location": "Service Descriptors/eserciziocampari.module.RicercaAuto-RicercaAuto.json",
-            "type": "generated"
-        },
-        {
-            "location": "Service Descriptors/eserciziocampari.module.RicercaAuto2-RicercaAuto2.json",
-            "type": "generated"
-        },
-        {
-            "location": "Service Descriptors/eserciziocampari.module.main.RicercaAuto-RicercaAuto.json",
-            "type": "generated"
-        },
-        {
             "location": "Service Descriptors/eserciziocampari.massimo.main.RicercaAuto-RicercaAuto.json",
             "type": "generated"
         }

@@ -10,6 +10,7 @@
     xmlns:ns10="http://tns.tibco.com/bw/palette/internal/activityerror+bw.jdbc.JDBCQuery"
     xmlns:ns11="http://www.example.org/RegistrazioneUtente"
     xmlns:ns12="http://www.example.org/ReadAndWrite"
+    xmlns:ns13="http://tns.tibco.com/bw/palette/internal/activityerror+22c80397-3eeb-4285-b5f0-029f75898874"
     xmlns:ns2="http://www.tibco.com/namespaces/tnt/plugins/jdbc"
     xmlns:ns3="http://tns.tibco.com/bw/palette/internal/activityerror+bw.jdbc.update"
     xmlns:ns4="http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions"
@@ -22,6 +23,34 @@
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
     xmlns:tibprop="http://ns.tibco.com/bw/property" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <tibex:VariableDescriptor type="MemorySaving">
+        <task name="postOut">
+            <endingVariables>
+                <variable>postOut-input</variable>
+            </endingVariables>
+        </task>
+        <task name="ControlloDatiUtente">
+            <endingVariables>
+                <variable>ControlloDatiUtente-input</variable>
+                <variable>post</variable>
+            </endingVariables>
+        </task>
+        <task name="Log">
+            <endingVariables>
+                <variable>Log-input</variable>
+            </endingVariables>
+        </task>
+        <task name="Log1">
+            <endingVariables>
+                <variable>Log1-input</variable>
+            </endingVariables>
+        </task>
+        <task name="Reply">
+            <endingVariables>
+                <variable>Reply-input1</variable>
+            </endingVariables>
+        </task>
+    </tibex:VariableDescriptor>
     <tibex:Types>
         <xs:schema attributeFormDefault="unqualified"
             elementFormDefault="qualified"
@@ -215,6 +244,18 @@
             </xs:complexType>
             <xs:element name="ActivityInput" type="tns:LogParametersType"/>
         </xs:schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+22c80397-3eeb-4285-b5f0-029f75898874"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="http://www.example.org/ReadAndWrite" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+22c80397-3eeb-4285-b5f0-029f75898874">
+            <import namespace="http://www.example.org/ReadAndWrite"/>
+            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
+            <complexType name="ActivityErrorDataType">
+                <choice>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:Output"/>
+                </choice>
+            </complexType>
+        </schema>
         <wsdl:definitions
             targetNamespace="http://xmlns.example.com/20211118163601PLT"
             xmlns:extns="http://www.example.org/ReadAndWrite"
@@ -1113,11 +1154,14 @@
         <bpws:variable element="ns5:DefaultFault" name="Throw-input5" sca-bpel:internal="true"/>
         <bpws:variable element="ns5:DefaultFault" name="Throw-input6" sca-bpel:internal="true"/>
         <bpws:variable messageType="ns:postResponse" name="Reply-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns11:Registrazione"
-            name="ControlloDatiUtente-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns7:ActivityInput" name="Log-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns7:ActivityInput" name="Log1-input" sca-bpel:internal="true"/>
         <bpws:variable messageType="ns:postResponse" name="Reply-input1" sca-bpel:internal="true"/>
+        <bpws:variable element="ns13:ActivityErrorData"
+            name="_error_ControlloDatiUtente" sca-bpel:internal="true"/>
+        <bpws:variable element="ns0:ErrorReport" name="_error" sca-bpel:internal="true"/>
+        <bpws:variable element="ns11:Registrazione"
+            name="ControlloDatiUtente-input" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
