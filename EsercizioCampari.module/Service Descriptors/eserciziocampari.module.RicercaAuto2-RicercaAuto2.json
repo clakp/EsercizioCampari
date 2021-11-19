@@ -2,8 +2,8 @@
   "swagger" : "2.0",
   "info" : {
     "version" : "1.0",
-    "title" : "RicercaAuto",
-    "description" : "RicercaAuto service"
+    "title" : "RicercaAuto2",
+    "description" : "RicercaAuto2 service"
   },
   "host" : "localhost:8080",
   "basePath" : "/",
@@ -11,9 +11,9 @@
   "paths" : {
     "/check" : {
       "post" : {
-        "summary" : "postRicercaAuto",
-        "description" : "postRicercaAuto",
-        "operationId" : "post-ricercaauto",
+        "summary" : "postRicercaAuto2",
+        "description" : "postRicercaAuto2",
+        "operationId" : "post-ricercaauto2",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {

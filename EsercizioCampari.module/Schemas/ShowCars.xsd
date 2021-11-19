@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/ShowCars" xmlns:tns="http://www.example.org/ShowCars" elementFormDefault="qualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/ShowCars" xmlns:tns="http://www.example.org/ShowCars" elementFormDefault="qualified" xmlns:Q1="http://www.example.org/InvalidUser">
 
+    <import namespace="http://www.example.org/InvalidUser"></import>
     <element name="ShowCars" type="tns:ShowCarsType"></element>
     
     <complexType name="ShowCarsType">
     	<sequence>
-    		<element name="ShopWindow" type="tns:ShopWindowType" minOccurs="0" maxOccurs="unbounded"></element>
+    		<element name="ShopWindow" type="tns:ShopWindowType"
+    			minOccurs="0" maxOccurs="unbounded">
+    		</element>
+    		<element name="NoAccess" type="Q1:InvalidUserType" minOccurs="0" maxOccurs="1"></element>
     	</sequence>
     </complexType>
 
@@ -17,6 +21,12 @@
     		<element name="Optional" type="string"></element>
     		<element name="Surcharge" type="string"></element>
     		<element name="Price" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    
+    <complexType name="FaultType">
+    	<sequence>
     	</sequence>
     </complexType>
 </schema>

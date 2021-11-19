@@ -60,6 +60,21 @@
             "$ref" : "#/definitions/ShopWindow",
             "uniqueItems" : false
           }
+        },
+        "NoAccess" : {
+          "$ref" : "#/definitions/InvalidUserType"
+        }
+      }
+    },
+    "InvalidUserType" : {
+      "type" : "object",
+      "required" : [ "DenyAccess", "TryRegistration" ],
+      "properties" : {
+        "DenyAccess" : {
+          "type" : "string"
+        },
+        "TryRegistration" : {
+          "type" : "string"
         }
       }
     },

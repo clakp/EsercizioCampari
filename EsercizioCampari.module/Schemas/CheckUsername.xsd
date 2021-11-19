@@ -5,7 +5,9 @@
     
     <complexType name="CheckUsernameType">
     	<sequence>
-    		<element name="Username" type="string"></element>
+    		<element name="Username" type="string" minOccurs="0" maxOccurs="1"></element>
+    		<element name="Password" type="string" minOccurs="0" maxOccurs="1"></element>
+    		<element name="Category" type="string" minOccurs="0" maxOccurs="1"></element>
     	</sequence>
     </complexType>
 </schema>

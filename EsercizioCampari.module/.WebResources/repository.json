@@ -1,7 +1,21 @@
 {
-    "records": [],
-    "resources": [{
-        "location": "Service Descriptors/eserciziocampari.module.RicercaAuto-RicercaAuto.json",
-        "type": "generated"
-    }]
+    "records": [{
+        "name": "Cloud",
+        "items": [],
+        "url": "https://integration.cloud.tibco.com:443"
+    }],
+    "resources": [
+        {
+            "location": "Service Descriptors/eserciziocampari.module.RicercaAuto-RicercaAuto.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/eserciziocampari.module.RicercaAuto2-RicercaAuto2.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/eserciziocampari.module.main.RicercaAuto-RicercaAuto.json",
+            "type": "generated"
+        }
+    ]
 }

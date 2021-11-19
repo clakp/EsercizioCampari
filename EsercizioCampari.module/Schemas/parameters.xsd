@@ -5,8 +5,13 @@
     
     <complexType name="parametersType">
     	<sequence>
-    		<element name="username" type="string" minOccurs="0" maxOccurs="1"></element>
-    		<element name="category" type="string" minOccurs="0" maxOccurs="1"></element>
+    		<element name="username" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="category" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="password" type="string" minOccurs="0" maxOccurs="1"></element>
     	</sequence>
     </complexType>
 </schema>
