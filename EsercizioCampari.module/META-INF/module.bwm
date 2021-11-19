@@ -2,20 +2,12 @@
 <sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="__wBFIEhkEeyYIa0FR7TYXA" targetNamespace="http://tns.tibco.com/bw/composite/EsercizioCampari.module" name="EsercizioCampari.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
   <sca:service xmi:id="_PDrO4EiFEeyp3Nf8UXD9nw" name="registrazioneutente" promote="ComponentRegistrazioneUtente/registrazioneutente">
     <sca:interface.wsdl xmi:id="_PD8UoEiFEeyp3Nf8UXD9nw" interface="http://xmlns.example.com/20211118163601PLT#wsdl.interface(registrazioneutente)" scaext:wsdlLocation="../Processes/eserciziocampari/module/RegistrazioneUtente.bwp"/>
-    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_PEDpYEiFEeyp3Nf8UXD9nw" name="RestService" path="/registrazioneutente/{name}/{surname}/{street}/{city}/{zipcode}/{username}/{password}" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="RegistrazioneUtente/" basePath="/" connector="eserciziocampari.module.RegistrazioneUtente" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtente.json">
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_PEDpYEiFEeyp3Nf8UXD9nw" name="RestService" path="/user" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="RegistrazioneUtente/" basePath="/" connector="eserciziocampari.module.RegistrazioneUtente" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtente.json">
       <operation xmi:id="_PEJI8EiFEeyp3Nf8UXD9nw" operationName="post" nickname="post-registrazioneutente" httpMethod="POST" notes="postRegistrazioneUtente" responseStyle="element" requestStyle="element" outputPartName="Feedback">
         <clientFormat>json</clientFormat>
+        <clientFormat>xml</clientFormat>
         <clientRequestFormat>json</clientRequestFormat>
       </operation>
-      <parameters xmi:id="_IZ3uQEkSEeyauP59_R0slw">
-        <parameterMapping xmi:id="_IZ3uQUkSEeyauP59_R0slw" parameterName="name" parameterType="Path" required="true"/>
-        <parameterMapping xmi:id="_IZ3uQkkSEeyauP59_R0slw" parameterName="surname" parameterType="Path" required="true"/>
-        <parameterMapping xmi:id="_IZ3uQ0kSEeyauP59_R0slw" parameterName="street" parameterType="Path" required="true"/>
-        <parameterMapping xmi:id="_IZ3uREkSEeyauP59_R0slw" parameterName="city" parameterType="Path" required="true"/>
-        <parameterMapping xmi:id="_IZ3uRUkSEeyauP59_R0slw" parameterName="zipcode" parameterType="Path" required="true"/>
-        <parameterMapping xmi:id="_IZ3uRkkSEeyauP59_R0slw" parameterName="username" parameterType="Path" required="true"/>
-        <parameterMapping xmi:id="_IZ3uR0kSEeyauP59_R0slw" parameterName="password" parameterType="Path" required="true"/>
-      </parameters>
       <advancedConfig xmi:id="_PEGssEiFEeyp3Nf8UXD9nw" blockingQueueSize="2147483647"/>
     </scaext:binding>
     <scact:bindingAdjunct xmi:id="_PEJwAEiFEeyp3Nf8UXD9nw" bindingName="RestService"/>

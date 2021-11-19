@@ -9,13 +9,13 @@
   "basePath" : "/",
   "schemes" : [ "http" ],
   "paths" : {
-    "/registrazioneutente/{name}/{surname}/{street}/{city}/{zipcode}/{username}/{password}" : {
+    "/user" : {
       "post" : {
         "summary" : "postRegistrazioneUtente",
         "description" : "postRegistrazioneUtente",
         "operationId" : "post-registrazioneutente",
         "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
+        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "body",
           "in" : "body",
@@ -23,48 +23,6 @@
           "schema" : {
             "$ref" : "#/definitions/Registrazione"
           },
-          "required" : true
-        }, {
-          "name" : "zipcode",
-          "in" : "path",
-          "description" : "",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "password",
-          "in" : "path",
-          "description" : "",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "city",
-          "in" : "path",
-          "description" : "",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "surname",
-          "in" : "path",
-          "description" : "",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "street",
-          "in" : "path",
-          "description" : "",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "name",
-          "in" : "path",
-          "description" : "",
-          "type" : "string",
-          "required" : true
-        }, {
-          "name" : "username",
-          "in" : "path",
-          "description" : "",
-          "type" : "string",
           "required" : true
         } ],
         "responses" : {
@@ -81,12 +39,8 @@
   "definitions" : {
     "Registrazione" : {
       "type" : "object",
-      "required" : [ "Username", "ZipCode", "Street", "ID", "City", "Surname", "Name", "Password" ],
+      "required" : [ "Username", "ZipCode", "Street", "City", "Surname", "Name", "Password" ],
       "properties" : {
-        "ID" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
         "Name" : {
           "type" : "string"
         },

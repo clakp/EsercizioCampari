@@ -5,7 +5,6 @@
     
     <complexType name="RegistrazioneType">
     	<sequence>
-    		<element name="ID" type="int"></element>
     		<element name="Name" type="string"></element>
     		<element name="Surname" type="string"></element>
     		<element name="Street" type="string"></element>
