@@ -12,6 +12,10 @@
         {
             "location": "Service Descriptors/main.RegistrazioneUtente-RegistrazioneUtente.json",
             "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/claudia.main.RegistrazioneUtente-RegistrazioneUtente.json",
+            "type": "generated"
         }
     ]
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="operations.ControlloDatiUtente" suppressJoinFailure="yes"
+    name="claudia.operations.ControlloDatiUtente"
+    suppressJoinFailure="yes"
     targetNamespace="http://xmlns.example.com/20211119120403"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"

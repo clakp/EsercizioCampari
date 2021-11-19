@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpws:process exitOnStandardFault="no" name="main.RegistrazioneUtente"
-    suppressJoinFailure="yes"
+<bpws:process exitOnStandardFault="no"
+    name="claudia.main.RegistrazioneUtente" suppressJoinFailure="yes"
     targetNamespace="http://xmlns.example.com/20211118163601"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
@@ -251,7 +251,7 @@
             <wsdl:portType name="registrazioneutente"
                 tibex:bw.rest.apipath="/user"
                 tibex:bw.rest.basepath="RegistrazioneUtente"
-                tibex:bw.rest.resource="Service Descriptors/main.RegistrazioneUtente-RegistrazioneUtente.json"
+                tibex:bw.rest.resource="Service Descriptors/claudia.main.RegistrazioneUtente-RegistrazioneUtente.json"
                 tibex:bw.rest.resource.source="generated" tibex:source="bw.rest.service">
                 <wsdl:documentation>RegistrazioneUtente service</wsdl:documentation>
                 <wsdl:operation name="post">
@@ -1222,7 +1222,7 @@
                                     expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://www.example.org/RegistrazioneUtente&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.Registrazione&quot;/>&#xa;    &lt;xsl:template name=&quot;ControlloDatiUtente-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns1:Registrazione>&#xa;            &lt;tns1:Name>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Name&quot;/>&#xa;            &lt;/tns1:Name>&#xa;            &lt;tns1:Surname>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Surname&quot;/>&#xa;            &lt;/tns1:Surname>&#xa;            &lt;tns1:Street>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Street&quot;/>&#xa;            &lt;/tns1:Street>&#xa;            &lt;tns1:City>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:City&quot;/>&#xa;            &lt;/tns1:City>&#xa;            &lt;tns1:ZipCode>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:ZipCode&quot;/>&#xa;            &lt;/tns1:ZipCode>&#xa;            &lt;tns1:Username>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Username&quot;/>&#xa;            &lt;/tns1:Username>&#xa;            &lt;tns1:Password>&#xa;                &lt;xsl:value-of select=&quot;$post.Registrazione/tns1:Password&quot;/>&#xa;            &lt;/tns1:Password>&#xa;        &lt;/tns1:Registrazione>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
-                                    subProcessName="operations.ControlloDatiUtente" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                                    subProcessName="claudia.operations.ControlloDatiUtente" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                                 </tibex:extActivity>
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
