@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/NoResults" xmlns:tns="http://www.example.org/NoResults" elementFormDefault="qualified">
+
+    <element name="NoResults" type="tns:NoResultsType"></element>
+    
+    <complexType name="NoResultsType">
+    	<sequence>
+    		<element name="VoidSearch" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>

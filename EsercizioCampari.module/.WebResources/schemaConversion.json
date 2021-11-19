@@ -8,5 +8,35 @@
         "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtente.json",
         "conversionType": "linked",
         "xsdSchemaTargetNamespace": "http://www.example.org/ReadAndWrite"
+    },
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.RicercaAuto-RicercaAuto.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/CheckUsername"
+    },
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.RicercaAuto-RicercaAuto.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/ShowCars"
+    },
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.RicercaAuto2-RicercaAuto2.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/User"
+    },
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.RicercaAuto2-RicercaAuto2.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/ShowCars"
+    },
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.main.RicercaAuto-RicercaAuto.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/CheckUsername"
+    },
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.main.RicercaAuto-RicercaAuto.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/ShowCars"
     }
 ]}

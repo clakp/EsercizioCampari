@@ -12,6 +12,18 @@
     </scaext:binding>
     <scact:bindingAdjunct xmi:id="_PEJwAEiFEeyp3Nf8UXD9nw" bindingName="RestService"/>
   </sca:service>
+  <sca:service xmi:id="_eXg4MEk8EeyhuZ9ai5GdRA" name="check" promote="ComponentRicercaAuto/check">
+    <sca:interface.wsdl xmi:id="_eXg4NEk8EeyhuZ9ai5GdRA" interface="http://xmlns.example.com/20211119142742PLT#wsdl.interface(check)" scaext:wsdlLocation="../Processes/eserciziocampari/module/main/RicercaAuto.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_eXseYEk8EeyhuZ9ai5GdRA" name="RestService" path="/check" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="RicercaAuto" basePath="/" connector="eserciziocampari.module.RicercaAuto" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.module.main.RicercaAuto-RicercaAuto.json">
+      <operation xmi:id="_eXtFcEk8EeyhuZ9ai5GdRA" operationName="post" nickname="post-check" httpMethod="POST" notes="postRicercaAuto" responseStyle="element" requestStyle="element" outputPartName="Response">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_eXylAEk8EeyhuZ9ai5GdRA"/>
+      <advancedConfig xmi:id="_eXseYUk8EeyhuZ9ai5GdRA" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_eXtFcUk8EeyhuZ9ai5GdRA" bindingName="RestService"/>
+  </sca:service>
   <sca:property xmi:id="_AXpF0EhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AX3IQEhlEeyYIa0FR7TYXA" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AX7ZsEhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
@@ -21,6 +33,12 @@
   <sca:property xmi:id="_AYKDMEhlEeyYIa0FR7TYXA" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AYNtkEhlEeyYIa0FR7TYXA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AYR_AEhlEeyYIa0FR7TYXA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:component xmi:id="_eXaxkEk8EeyhuZ9ai5GdRA" name="ComponentRicercaAuto" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_eXaxkUk8EeyhuZ9ai5GdRA" processName="eserciziocampari.massimo.main.RicercaAuto"/>
+    <sca:service xmi:id="_eXgRIEk8EeyhuZ9ai5GdRA" name="check">
+      <sca:interface.wsdl xmi:id="_eXgRIUk8EeyhuZ9ai5GdRA" interface="http://xmlns.example.com/20211119142742PLT#wsdl.interface(check)" scaext:wsdlLocation="../Processes/eserciziocampari/module/main/RicercaAuto.bwp"/>
+    </sca:service>
+  </sca:component>
   <sca:component xmi:id="_PCYOYEiFEeyp3Nf8UXD9nw" name="ComponentRegistrazioneUtente" compositeext:version="1.0.0.qualifier">
     <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_PCYOYUiFEeyp3Nf8UXD9nw" processName="claudia.main.RegistrazioneUtente"/>
     <sca:service xmi:id="_PDfBoEiFEeyp3Nf8UXD9nw" name="registrazioneutente">
