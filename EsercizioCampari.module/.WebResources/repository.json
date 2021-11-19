@@ -6,6 +6,18 @@
     }],
     "resources": [
         {
+            "location": "Service Descriptors/eserciziocampari.module.RegistrazioneUtente-RegistrazioneUtente.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/main.RegistrazioneUtente-RegistrazioneUtente.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/claudia.main.RegistrazioneUtente-RegistrazioneUtente.json",
+            "type": "generated"
+        },
+        {
             "location": "Service Descriptors/eserciziocampari.module.RicercaAuto-RicercaAuto.json",
             "type": "generated"
         },

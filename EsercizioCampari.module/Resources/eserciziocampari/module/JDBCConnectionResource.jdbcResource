@@ -5,3 +5,4 @@
     <connectionConfig xsi:type="jdbc:NonXaConnection" xmi:id="_DeWqMEiIEeyYIa0FR7TYXA" jdbcDriver="org.postgresql.Driver" dbURL="jdbc:postgresql://localhost:5432/postgres"/>
   </jndi:configuration>
 </jndi:namedResource>
+
