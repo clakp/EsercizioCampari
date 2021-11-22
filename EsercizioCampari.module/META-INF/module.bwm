@@ -24,7 +24,21 @@
     </scaext:binding>
     <scact:bindingAdjunct xmi:id="_eXtFcUk8EeyhuZ9ai5GdRA" bindingName="RestService"/>
   </sca:service>
-  <sca:service xmi:id="_9U308EtwEeyXKN4w8Jm70A" name="prenotazioneauto" promote="ComponentPrenotazioneAuto/prenotazioneauto">
+  <sca:service xmi:id="_mmM8oElXEeybXbjxI5bUJA" name="storicoprenotazioniutente" promote="ComponentStoricoPrenotazioniUtente/storicoprenotazioniutente">
+    <sca:interface.wsdl xmi:id="_mmZw8ElXEeybXbjxI5bUJA" interface="http://xmlns.example.com/20211119174154PLT#wsdl.interface(storicoprenotazioniutente)" scaext:wsdlLocation="../Processes/eserciziocampari/module/StoricoPrenotazioniUtente.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_mmc0QElXEeybXbjxI5bUJA" name="RestService1" path="/history/{ID_User}" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="StoricoPrenotazioniUtente" basePath="/" connector="eserciziocampari.module.RegistrazioneUtente" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.module.StoricoPrenotazioniUtente-StoricoPrenotazioniUtente.json">
+      <operation xmi:id="_mmgeoElXEeybXbjxI5bUJA" operationName="get" nickname="get-storicoprenotazioniutente" httpMethod="GET" notes="getStoricoPrenotazioniUtente" responseStyle="element" outputPartName="StoricoOrdini">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="__L9U8ElYEeybXbjxI5bUJA">
+        <parameterMapping xmi:id="__L9U8UlYEeybXbjxI5bUJA" parameterName="ID_User" parameterType="Path" dataType="integer#int32" required="true"/>
+      </parameters>
+      <advancedConfig xmi:id="_mmc0QUlXEeybXbjxI5bUJA" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_mmgeoUlXEeybXbjxI5bUJA" bindingName="RestService1"/>
+  </sca:service>
+    <sca:service xmi:id="_9U308EtwEeyXKN4w8Jm70A" name="prenotazioneauto" promote="ComponentPrenotazioneAuto/prenotazioneauto">
     <sca:interface.wsdl xmi:id="_9U8GYEtwEeyXKN4w8Jm70A" interface="http://xmlns.example.com/20211122094826PLT#wsdl.interface(prenotazioneauto)" scaext:wsdlLocation="../Processes/eserciziocampari/massimo/main/PrenotazioneAuto.bwp"/>
     <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_9VI6sEtwEeyXKN4w8Jm70A" name="RestService1" path="/rent/{id_car}" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="PrenotazioneAuto" basePath="/" connector="eserciziocampari.module.RegistrazioneUtente" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.massimo.main.PrenotazioneAuto-PrenotazioneAuto.json">
       <operation xmi:id="_9VLW8EtwEeyXKN4w8Jm70A" operationName="post" nickname="post-prenotazioneauto" httpMethod="POST" notes="postPrenotazioneAuto" responseStyle="element" requestStyle="element" outputPartName="Response">
@@ -48,18 +62,24 @@
   <sca:property xmi:id="_AYNtkEhlEeyYIa0FR7TYXA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AYR_AEhlEeyYIa0FR7TYXA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:component xmi:id="_eXaxkEk8EeyhuZ9ai5GdRA" name="ComponentRicercaAuto" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_eXaxkUk8EeyhuZ9ai5GdRA" processName="eserciziocampari.massimo.main.RicercaAuto"/>
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_eXaxkUk8EeyhuZ9ai5GdRA" processName="eserciziocampari.massimo.main.RicercaAuto" autoStart="false"/>
     <sca:service xmi:id="_eXgRIEk8EeyhuZ9ai5GdRA" name="check">
       <sca:interface.wsdl xmi:id="_eXgRIUk8EeyhuZ9ai5GdRA" interface="http://xmlns.example.com/20211119142742PLT#wsdl.interface(check)" scaext:wsdlLocation="../Processes/eserciziocampari/module/main/RicercaAuto.bwp"/>
     </sca:service>
   </sca:component>
   <sca:component xmi:id="_PCYOYEiFEeyp3Nf8UXD9nw" name="ComponentRegistrazioneUtente" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_PCYOYUiFEeyp3Nf8UXD9nw" processName="claudia.main.RegistrazioneUtente"/>
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_PCYOYUiFEeyp3Nf8UXD9nw" processName="claudia.main.RegistrazioneUtente" autoStart="false"/>
     <sca:service xmi:id="_PDfBoEiFEeyp3Nf8UXD9nw" name="registrazioneutente">
       <sca:interface.wsdl xmi:id="_PDlIQEiFEeyp3Nf8UXD9nw" interface="http://xmlns.example.com/20211118163601PLT#wsdl.interface(registrazioneutente)" scaext:wsdlLocation="../Processes/eserciziocampari/module/RegistrazioneUtente.bwp"/>
     </sca:service>
   </sca:component>
-  <sca:component xmi:id="_9UuD8EtwEeyXKN4w8Jm70A" name="ComponentPrenotazioneAuto" compositeext:version="1.0.0.qualifier">
+  <sca:component xmi:id="_mmDysElXEeybXbjxI5bUJA" name="ComponentStoricoPrenotazioniUtente" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_mmDysUlXEeybXbjxI5bUJA" processName="claudia.main.StoricoPrenotazioniUtente"/>
+    <sca:service xmi:id="_mmJSQElXEeybXbjxI5bUJA" name="storicoprenotazioniutente">
+      <sca:interface.wsdl xmi:id="_mmKgYElXEeybXbjxI5bUJA" interface="http://xmlns.example.com/20211119174154PLT#wsdl.interface(storicoprenotazioniutente)" scaext:wsdlLocation="../Processes/eserciziocampari/module/StoricoPrenotazioniUtente.bwp"/>
+    </sca:service>
+  </sca:component>
+    <sca:component xmi:id="_9UuD8EtwEeyXKN4w8Jm70A" name="ComponentPrenotazioneAuto" compositeext:version="1.0.0.qualifier">
     <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_9UuD8UtwEeyXKN4w8Jm70A" processName="eserciziocampari.massimo.main.PrenotazioneAuto"/>
     <sca:service xmi:id="_9U1YsEtwEeyXKN4w8Jm70A" name="prenotazioneauto">
       <sca:interface.wsdl xmi:id="_9U1_wEtwEeyXKN4w8Jm70A" interface="http://xmlns.example.com/20211122094826PLT#wsdl.interface(prenotazioneauto)" scaext:wsdlLocation="../Processes/eserciziocampari/massimo/main/PrenotazioneAuto.bwp"/>
