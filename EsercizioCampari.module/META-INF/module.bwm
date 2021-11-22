@@ -24,6 +24,20 @@
     </scaext:binding>
     <scact:bindingAdjunct xmi:id="_eXtFcUk8EeyhuZ9ai5GdRA" bindingName="RestService"/>
   </sca:service>
+  <sca:service xmi:id="_mmM8oElXEeybXbjxI5bUJA" name="storicoprenotazioniutente" promote="ComponentStoricoPrenotazioniUtente/storicoprenotazioniutente">
+    <sca:interface.wsdl xmi:id="_mmZw8ElXEeybXbjxI5bUJA" interface="http://xmlns.example.com/20211119174154PLT#wsdl.interface(storicoprenotazioniutente)" scaext:wsdlLocation="../Processes/eserciziocampari/module/StoricoPrenotazioniUtente.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_mmc0QElXEeybXbjxI5bUJA" name="RestService1" path="/history/{ID_User}" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="StoricoPrenotazioniUtente" basePath="/" connector="eserciziocampari.module.RegistrazioneUtente" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.module.StoricoPrenotazioniUtente-StoricoPrenotazioniUtente.json">
+      <operation xmi:id="_mmgeoElXEeybXbjxI5bUJA" operationName="get" nickname="get-storicoprenotazioniutente" httpMethod="GET" notes="getStoricoPrenotazioniUtente" responseStyle="element" outputPartName="StoricoOrdini">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="__L9U8ElYEeybXbjxI5bUJA">
+        <parameterMapping xmi:id="__L9U8UlYEeybXbjxI5bUJA" parameterName="ID_User" parameterType="Path" dataType="integer#int32" required="true"/>
+      </parameters>
+      <advancedConfig xmi:id="_mmc0QUlXEeybXbjxI5bUJA" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_mmgeoUlXEeybXbjxI5bUJA" bindingName="RestService1"/>
+  </sca:service>
   <sca:property xmi:id="_AXpF0EhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AX3IQEhlEeyYIa0FR7TYXA" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AX7ZsEhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
@@ -34,15 +48,21 @@
   <sca:property xmi:id="_AYNtkEhlEeyYIa0FR7TYXA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AYR_AEhlEeyYIa0FR7TYXA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:component xmi:id="_eXaxkEk8EeyhuZ9ai5GdRA" name="ComponentRicercaAuto" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_eXaxkUk8EeyhuZ9ai5GdRA" processName="eserciziocampari.massimo.main.RicercaAuto"/>
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_eXaxkUk8EeyhuZ9ai5GdRA" processName="eserciziocampari.massimo.main.RicercaAuto" autoStart="false"/>
     <sca:service xmi:id="_eXgRIEk8EeyhuZ9ai5GdRA" name="check">
       <sca:interface.wsdl xmi:id="_eXgRIUk8EeyhuZ9ai5GdRA" interface="http://xmlns.example.com/20211119142742PLT#wsdl.interface(check)" scaext:wsdlLocation="../Processes/eserciziocampari/module/main/RicercaAuto.bwp"/>
     </sca:service>
   </sca:component>
   <sca:component xmi:id="_PCYOYEiFEeyp3Nf8UXD9nw" name="ComponentRegistrazioneUtente" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_PCYOYUiFEeyp3Nf8UXD9nw" processName="claudia.main.RegistrazioneUtente"/>
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_PCYOYUiFEeyp3Nf8UXD9nw" processName="claudia.main.RegistrazioneUtente" autoStart="false"/>
     <sca:service xmi:id="_PDfBoEiFEeyp3Nf8UXD9nw" name="registrazioneutente">
       <sca:interface.wsdl xmi:id="_PDlIQEiFEeyp3Nf8UXD9nw" interface="http://xmlns.example.com/20211118163601PLT#wsdl.interface(registrazioneutente)" scaext:wsdlLocation="../Processes/eserciziocampari/module/RegistrazioneUtente.bwp"/>
+    </sca:service>
+  </sca:component>
+  <sca:component xmi:id="_mmDysElXEeybXbjxI5bUJA" name="ComponentStoricoPrenotazioniUtente" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_mmDysUlXEeybXbjxI5bUJA" processName="claudia.main.StoricoPrenotazioniUtente"/>
+    <sca:service xmi:id="_mmJSQElXEeybXbjxI5bUJA" name="storicoprenotazioniutente">
+      <sca:interface.wsdl xmi:id="_mmKgYElXEeybXbjxI5bUJA" interface="http://xmlns.example.com/20211119174154PLT#wsdl.interface(storicoprenotazioniutente)" scaext:wsdlLocation="../Processes/eserciziocampari/module/StoricoPrenotazioniUtente.bwp"/>
     </sca:service>
   </sca:component>
 </sca:composite>

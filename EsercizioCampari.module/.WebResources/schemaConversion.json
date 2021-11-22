@@ -38,5 +38,10 @@
         "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.main.RicercaAuto-RicercaAuto.json",
         "conversionType": "linked",
         "xsdSchemaTargetNamespace": "http://www.example.org/ShowCars"
+    },
+    {
+        "jsonSchemaLocation": "/EsercizioCampari.module/Service Descriptors/eserciziocampari.module.StoricoPrenotazioniUtente-StoricoPrenotazioniUtente.json",
+        "conversionType": "linked",
+        "xsdSchemaTargetNamespace": "http://www.example.org/StoricoOrdini"
     }
 ]}

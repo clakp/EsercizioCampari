@@ -1,0 +1,74 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "StoricoPrenotazioniUtente",
+    "description" : "StoricoPrenotazioniUtente service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/history/{ID_User}" : {
+      "get" : {
+        "summary" : "getStoricoPrenotazioniUtente",
+        "description" : "getStoricoPrenotazioniUtente",
+        "operationId" : "get-storicoprenotazioniutente",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "ID_User",
+          "in" : "path",
+          "description" : "",
+          "type" : "integer",
+          "format" : "int32",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a OrdersHistory to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/OrdersHistory"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Reservation" : {
+      "type" : "object",
+      "required" : [ "To_Date", "From_Date", "ID_User", "ID_Car" ],
+      "properties" : {
+        "ID_User" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "ID_Car" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "From_Date" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "To_Date" : {
+          "type" : "string",
+          "format" : "date"
+        }
+      }
+    },
+    "OrdersHistory" : {
+      "type" : "object",
+      "properties" : {
+        "Reservation" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Reservation",
+            "uniqueItems" : false
+          }
+        }
+      }
+    }
+  }
+}

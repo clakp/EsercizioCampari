@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/ReadAndWrite" xmlns:tns="http://www.example.org/ReadAndWrite" elementFormDefault="qualified">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/ReadAndWrite" elementFormDefault="qualified" targetNamespace="http://www.example.org/ReadAndWrite">
 
-    <element name="Input" type="string"></element>
+    <element name="Input" type="string"/>
 
-    <element name="Output" type="string"></element>
+    <element name="Output" type="string"/>
+
+    <element name="Number" type="int"/>
 </schema>
