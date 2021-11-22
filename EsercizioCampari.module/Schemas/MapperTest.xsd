@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/MapperTest" xmlns:tns="http://www.example.org/MapperTest" elementFormDefault="qualified">
+
+    <element name="Condition" type="tns:ConditionType"></element>
+    
+    <complexType name="ConditionType">
+    	<sequence>
+    		<element name="Condition2" type="integer"
+    			minOccurs="0" maxOccurs="unbounded">
+    		</element>
+    	</sequence>
+    </complexType>
+
+</schema>

@@ -17,7 +17,10 @@
     xmlns:ns16="http://tns.tibco.com/bw/palette/internal/activityerror+com.tibco.bw.core.design.process.editor.Activity_4002_Throw"
     xmlns:ns17="http://tns.tibco.com/bw/palette/internal/activityerror+com.tibco.bw.core.design.process.editor.Activity_4002_Rethrow"
     xmlns:ns18="http://www.example.org/ParamPrenotazione"
+    xmlns:ns19="http://www.example.org/MapperTest"
     xmlns:ns2="http://tns.tibco.com/bw/palette/internal/activityerror+bw.jdbc.JDBCQuery"
+    xmlns:ns20="http://www.tibco.com/namespaces/tnt/plugins/file"
+    xmlns:ns21="http://tns.tibco.com/bw/palette/internal/activityerror+bw.file.write"
     xmlns:ns3="http://www.example.org/parameters"
     xmlns:ns4="http://www.example.org/NoResults"
     xmlns:ns5="http://www.tibco.com/pe/WriteToLogActivitySchema"
@@ -29,7 +32,8 @@
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
-    xmlns:tibprop="http://ns.tibco.com/bw/property" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    xmlns:tibprop="http://ns.tibco.com/bw/property"
+    xmlns:tns="http://www.example.org/CheckPrenotazione" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <tibex:Types>
         <xs:schema attributeFormDefault="unqualified"
             elementFormDefault="qualified"
@@ -220,6 +224,11 @@
                                 <sequence>
                                     <element maxOccurs="1" minOccurs="0"
                                     name="id_car" nillable="false" type="int"/>
+                                    <element maxOccurs="1" minOccurs="0"
+                                    name="from_date"
+                                    nillable="false" type="date"/>
+                                    <element maxOccurs="1" minOccurs="0"
+                                    name="to_date" nillable="false" type="date"/>
                                 </sequence>
                             </complexType>
                         </element>
@@ -549,6 +558,8 @@
                                     nillable="false" type="date"/>
                                     <element maxOccurs="1" minOccurs="0"
                                     name="to_date" nillable="false" type="date"/>
+                                    <element maxOccurs="1" minOccurs="0"
+                                    name="days" nillable="false" type="double"/>
                                 </sequence>
                             </complexType>
                         </element>
@@ -693,8 +704,8 @@
                                     gradientEndColor="50431"
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.1"/>
-                                    <layoutConstraint x="628"
-                                    xsi:type="notation:Bounds" y="142"/>
+                                    <layoutConstraint x="881"
+                                    xsi:type="notation:Bounds" y="149"/>
                                     </children>
                                     <children type="4002 bw.jdbc.JDBCQuery">
                                     <children type="4017">
@@ -730,8 +741,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.2"/>
                                     <layoutConstraint
                                     height="40" width="40"
-                                    x="96"
-                                    xsi:type="notation:Bounds" y="142"/>
+                                    x="135"
+                                    xsi:type="notation:Bounds" y="149"/>
                                     </children>
                                     <children type="4002">
                                     <children type="4017">
@@ -765,8 +776,8 @@
                                     gradientEndColor="50431"
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.3"/>
-                                    <layoutConstraint x="356"
-                                    xsi:type="notation:Bounds" y="273"/>
+                                    <layoutConstraint x="519"
+                                    xsi:type="notation:Bounds" y="280"/>
                                     </children>
                                     <children type="4002 bw.jdbc.update">
                                     <children type="4017">
@@ -802,8 +813,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.4"/>
                                     <layoutConstraint
                                     height="40" width="40"
-                                    x="331"
-                                    xsi:type="notation:Bounds" y="142"/>
+                                    x="564"
+                                    xsi:type="notation:Bounds" y="149"/>
                                     </children>
                                     <children type="4002 bw.jdbc.JDBCQuery">
                                     <children type="4017">
@@ -839,8 +850,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.5"/>
                                     <layoutConstraint
                                     height="40" width="40"
-                                    x="234"
-                                    xsi:type="notation:Bounds" y="142"/>
+                                    x="471"
+                                    xsi:type="notation:Bounds" y="149"/>
                                     </children>
                                     <children type="4002 bw.jdbc.JDBCQuery">
                                     <children type="4017">
@@ -876,8 +887,154 @@
                                     <element href="//0/@process/@activity/@activity/@activities.6"/>
                                     <layoutConstraint
                                     height="40" width="40"
-                                    x="438"
-                                    xsi:type="notation:Bounds" y="142"/>
+                                    x="671"
+                                    xsi:type="notation:Bounds" y="149"/>
+                                    </children>
+                                    <children type="4002 bw.generalactivities.log">
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.7"/>
+                                    <layoutConstraint
+                                    height="40" width="40"
+                                    x="772"
+                                    xsi:type="notation:Bounds" y="149"/>
+                                    </children>
+                                    <children type="4002 bw.generalactivities.log">
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.8"/>
+                                    <layoutConstraint
+                                    height="40" width="40"
+                                    x="60"
+                                    xsi:type="notation:Bounds" y="149"/>
+                                    </children>
+                                    <children type="4002 bw.generalactivities.mapper">
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.9"/>
+                                    <layoutConstraint
+                                    height="40" width="40"
+                                    x="294"
+                                    xsi:type="notation:Bounds" y="149"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.10"/>
+                                    <layoutConstraint x="294"
+                                    xsi:type="notation:Bounds" y="37"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -891,8 +1048,8 @@
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity"/>
-                                    <layoutConstraint height="407"
-                                    width="786" xsi:type="notation:Bounds"/>
+                                    <layoutConstraint height="507"
+                                    width="1196" xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
                                 <styles xsi:type="notation:FilteringStyle"/>
@@ -901,7 +1058,7 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity"/>
-                            <layoutConstraint height="372" width="789" xsi:type="notation:Bounds"/>
+                            <layoutConstraint height="507" width="1199" xsi:type="notation:Bounds"/>
                         </children>
                         <children type="4022">
                             <children type="3022">
@@ -1050,7 +1207,7 @@
                     <styles xsi:type="bwnotation:BackgroundStyle"/>
                     <styles xsi:type="bwnotation:ResizingStyle"/>
                     <element href="//0/@process/@activity"/>
-                    <layoutConstraint height="608" width="789" x="1"
+                    <layoutConstraint height="708" width="1199" x="1"
                         xsi:type="notation:Bounds" y="1"/>
                 </children>
                 <styles xsi:type="notation:SortingStyle"/>
@@ -1059,13 +1216,13 @@
             </children>
             <styles fontName="Segoe UI" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="660" width="1131" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="760" width="1541" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
         <edges
             source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0"
-            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2" type="4006">
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.8" type="4006">
             <children type="6002">
                 <layoutConstraint xsi:type="notation:Location" y="40"/>
             </children>
@@ -1073,29 +1230,6 @@
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@links/@children.0"/>
             <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
-        </edges>
-        <edges
-            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2"
-            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.5" type="4006">
-            <children type="6002">
-                <layoutConstraint xsi:type="notation:Location" y="40"/>
-            </children>
-            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
-            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.1"/>
-            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
-        </edges>
-        <edges
-            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2"
-            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3" type="4006">
-            <children type="6002">
-                <layoutConstraint xsi:type="notation:Location" y="40"/>
-            </children>
-            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
-            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.2"/>
-            <bendpoints
-                points="[25, 0, -235, -131]$[73, 0, -187, -131]$[73, 131, -187, 0]$[236, 131, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
             source="//@children.0/@children.3/@children.0/@children.0/@children.1/@children.0/@children.0/@children.1/@children.0/@children.0/@children.0"
@@ -1116,7 +1250,7 @@
             </children>
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.3"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.1"/>
             <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
@@ -1127,12 +1261,34 @@
             </children>
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.4"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.2"/>
             <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
             source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.6"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.7" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.3"/>
+            <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.7"
             target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.1" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.4"/>
+            <bendpoints points="[25, 0, -95, 7]$[96, 0, -24, 7]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.8"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2" type="4006">
             <children type="6002">
                 <layoutConstraint xsi:type="notation:Location" y="40"/>
             </children>
@@ -1140,6 +1296,64 @@
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@links/@children.5"/>
             <bendpoints points="[0, 0, 0, 0]$[0, 0, 0, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.9" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.6"/>
+            <bendpoints points="[25, 0, -134, 0]$[135, 0, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.9"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.7"/>
+            <bendpoints
+                points="[0, 25, -225, -106]$[0, 131, -225, 0]$[201, 131, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.9"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.5" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.8"/>
+            <bendpoints points="[4, -24, 0, 107]$[0, -106, -4, 25]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.10"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.5" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.9"/>
+            <bendpoints
+                points="[25, 4, -152, -108]$[177, 4, 0, -108]$[177, 88, 0, -24]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.10" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.10"/>
+            <bendpoints
+                points="[0, -24, -159, 88]$[0, -112, -159, 0]$[135, -112, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
     </notation:Diagram>
     <tibex:NamespaceRegistry enabled="true">
@@ -1169,12 +1383,20 @@
             namespace="http://www.example.org/ParamPrenotazione" prefix="tns9"/>
         <tibex:namespaceItem
             namespace="http://www.example.org/CheckPrenotazione" prefix="tns8"/>
+        <tibex:namespaceItem
+            namespace="http://www.example.org/CheckUsername" prefix="tns10"/>
+        <tibex:namespaceItem
+            namespace="http://www.example.org/MapperTest" prefix="tns11"/>
+        <tibex:namespaceItem
+            namespace="http://www.tibco.com/namespaces/tnt/plugins/file" prefix="tns12"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/parameters"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/NoResults"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/AlreadyRent"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/RentValidation"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/ParamPrenotazione"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/CheckPrenotazione"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/MapperTest"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
@@ -1219,6 +1441,11 @@
             name="_error_Rethrow" sca-bpel:internal="true"/>
         <bpws:variable element="ns18:InfoFlux" name="Start"
             sca-bpel:internal="true" tibex:parameter="in"/>
+        <bpws:variable element="ns5:ActivityInput" name="Log1-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns5:ActivityInput" name="Log2-input" sca-bpel:internal="true"/>
+        <bpws:variable element="tns:CheckPrenotazione" name="Variable"/>
+        <bpws:variable element="ns19:Condition" name="Mapper-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns19:Condition" name="Mapper" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -1280,11 +1507,16 @@
         <bpws:flow name="flow">
             <bpws:links>
                 <bpws:link name="StartToEnd" tibex:linkType="SUCCESS"/>
-                <bpws:link name="JDBCQueryToEnd" tibex:linkType="SUCCESSWITHCONDITION"/>
-                <bpws:link name="JDBCQueryToThrow" tibex:linkType="SUCCESSWITHNOCONDITION"/>
                 <bpws:link name="JDBCUpdateToEnd" tibex:linkType="SUCCESS"/>
                 <bpws:link name="JDBCQuery1ToJDBCUpdate" tibex:linkType="SUCCESS"/>
                 <bpws:link name="JDBCQueryToEnd1" tibex:linkType="SUCCESS"/>
+                <bpws:link name="Log1ToEnd" tibex:linkType="SUCCESS"/>
+                <bpws:link name="Log2ToIDCarRentQuery" tibex:linkType="SUCCESS"/>
+                <bpws:link name="IDCarRentQueryToThrow" tibex:linkType="SUCCESSWITHNOCONDITION"/>
+                <bpws:link name="MapperToThrow" tibex:linkType="SUCCESSWITHNOCONDITION"/>
+                <bpws:link name="MapperToIDUSERQuery" tibex:linkType="SUCCESSWITHCONDITION"/>
+                <bpws:link name="EmptyToIDUSERQuery" tibex:linkType="SUCCESS"/>
+                <bpws:link name="IDCarRentQueryToEmpty" tibex:linkType="SUCCESSWITHCONDITION"/>
             </bpws:links>
             <bpws:extensionActivity>
                 <tibex:receiveEvent createInstance="yes"
@@ -1304,11 +1536,11 @@
                     name="End"
                     tibex:xpdlId="9a5aac2f-d0a9-4cef-9084-25caa48161e4" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
-                        <bpws:target linkName="JDBCQueryToEnd1"/>
+                        <bpws:target linkName="Log1ToEnd"/>
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns6=&quot;http://www.example.org/RentValidation&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns10=&quot;http://www.example.org/CheckUsername&quot; xmlns:tns9=&quot;http://www.example.org/ParamPrenotazione&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;Start&quot;/>&#xa;    &lt;xsl:param name=&quot;CarQuery&quot;/>&#xa;    &lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns6:RentValidation>&#xa;            &lt;xsl:if test=&quot;$Start/tns9:User/tns10:Username&quot;>&#xa;                &lt;tns6:Username>&#xa;                    &lt;xsl:value-of select=&quot;$Start/tns9:User/tns10:Username&quot;/>&#xa;                &lt;/tns6:Username>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$CarQuery/Record[1]/brand&quot;>&#xa;                &lt;tns6:Brand>&#xa;                    &lt;xsl:value-of select=&quot;$CarQuery/Record[1]/brand&quot;/>&#xa;                &lt;/tns6:Brand>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$CarQuery/Record[1]/model&quot;>&#xa;                &lt;tns6:Model>&#xa;                    &lt;xsl:value-of select=&quot;$CarQuery/Record[1]/model&quot;/>&#xa;                &lt;/tns6:Model>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$CarQuery/Record[1]/from_date&quot;>&#xa;                &lt;tns6:From_Date>&#xa;                    &lt;xsl:value-of select=&quot;$CarQuery/Record[1]/from_date&quot;/>&#xa;                &lt;/tns6:From_Date>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$CarQuery/Record[1]/to_date&quot;>&#xa;                &lt;tns6:To_Date>&#xa;                    &lt;xsl:value-of select=&quot;$CarQuery/Record[1]/to_date&quot;/>&#xa;                &lt;/tns6:To_Date>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$CarQuery/Record[1]/price&quot;>&#xa;                &lt;tns6:PriceADay>&#xa;                    &lt;xsl:value-of select=&quot;$CarQuery/Record[1]/price&quot;/>&#xa;                &lt;/tns6:PriceADay>&#xa;            &lt;/xsl:if>&#xa;            &lt;tns6:PriceTotal>&#xa;                &lt;xsl:value-of select=&quot;tib:compare-dateTime(xsd:dateTime($CarQuery/Record[1]/to_date), xsd:dateTime($CarQuery/Record[1]/from_date))*$CarQuery/Record[1]/price&quot;/>&#xa;            &lt;/tns6:PriceTotal>&#xa;        &lt;/tns6:RentValidation>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns6=&quot;http://www.example.org/RentValidation&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns10=&quot;http://www.example.org/CheckUsername&quot; xmlns:tns9=&quot;http://www.example.org/ParamPrenotazione&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:param name=&quot;CarQuery&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns6:RentValidation>&lt;xsl:if test=&quot;$Start/tns9:User/tns10:Username&quot;>&lt;tns6:Username>&lt;xsl:value-of select=&quot;$Start/tns9:User/tns10:Username&quot;/>&lt;/tns6:Username>&lt;/xsl:if>&lt;xsl:if test=&quot;$CarQuery/Record[1]/brand&quot;>&lt;tns6:Brand>&lt;xsl:value-of select=&quot;$CarQuery/Record[1]/brand&quot;/>&lt;/tns6:Brand>&lt;/xsl:if>&lt;xsl:if test=&quot;$CarQuery/Record[1]/model&quot;>&lt;tns6:Model>&lt;xsl:value-of select=&quot;$CarQuery/Record[1]/model&quot;/>&lt;/tns6:Model>&lt;/xsl:if>&lt;tns6:From_Date>&lt;xsl:value-of select=&quot;format-date($CarQuery/Record[1]/from_date, '[D01]/[M01]/[Y0001]')&quot;/>&lt;/tns6:From_Date>&lt;tns6:To_Date>&lt;xsl:value-of select=&quot;format-date($CarQuery/Record[1]/to_date, '[D01]/[M01]/[Y0001]')&quot;/>&lt;/tns6:To_Date>&lt;tns6:PriceADay>&lt;xsl:value-of select=&quot;concat(xsd:string($CarQuery/Record[1]/price), ' euro al giorno')&quot;/>&lt;/tns6:PriceADay>&lt;tns6:PriceTotal>&lt;xsl:value-of select=&quot;concat(xsd:string(round-half-to-even(xsd:decimal($CarQuery/Record[1]/days*$CarQuery/Record[1]/price), 2)), ' euro in totale')&quot;/>&lt;/tns6:PriceTotal>&lt;/tns6:RentValidation>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -1333,22 +1565,22 @@
                     outputVariable="IDCarRentQuery"
                     tibex:xpdlId="ef4ccbeb-3b97-4c33-ba55-32dcc305f420" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
-                        <bpws:target linkName="StartToEnd"/>
+                        <bpws:target linkName="Log2ToIDCarRentQuery"/>
                     </bpws:targets>
                     <bpws:sources>
-                        <bpws:source linkName="JDBCQueryToEnd">
-                            <tibex:DesignExpression>
-                                <tibex:expression
-                                    expression="not(exists($IDCarRentQuery/Record/id_car))" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
-                            </tibex:DesignExpression>
-                            <bpws:transitionCondition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[not(exists($IDCarRentQuery/Record/id_car))]]></bpws:transitionCondition>
-                        </bpws:source>
-                        <bpws:source linkName="JDBCQueryToThrow">
+                        <bpws:source linkName="IDCarRentQueryToThrow">
                             <tibex:DesignExpression>
                                 <tibex:expression
                                     expression="##otherwise##" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
                             </tibex:DesignExpression>
                             <bpws:transitionCondition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[##otherwise##]]></bpws:transitionCondition>
+                        </bpws:source>
+                        <bpws:source linkName="IDCarRentQueryToEmpty">
+                            <tibex:DesignExpression>
+                                <tibex:expression
+                                    expression="(not(exists($IDCarRentQuery/Record/id_car)) and ($Start/ns18:RentFlux/tns:To_Date>$Start/ns18:RentFlux/tns:From_Date))" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
+                            </tibex:DesignExpression>
+                            <bpws:transitionCondition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[(not(exists($IDCarRentQuery/Record/id_car)) and ($Start/ns18:RentFlux/tns:To_Date>$Start/ns18:RentFlux/tns:From_Date))]]></bpws:transitionCondition>
                         </bpws:source>
                     </bpws:sources>
                     <tibex:inputBindings>
@@ -1366,7 +1598,7 @@
                                     <type href="http://ns.tibco.com/bw/palette/jdbc#//JDBCQueryActivity"/>
                                     <value maxRows="100"
                                     sharedResourceProperty="jdbcProperty"
-                                    sqlStatement="SELECT id_car&#xa;  FROM &quot;EsercizioCampari&quot;.reservation&#xa;  where id_car=?&#xa;  limit 1&#xa;"
+                                    sqlStatement="SELECT id_car, from_date, to_date&#xa;  FROM &quot;EsercizioCampari&quot;.reservation&#xa;  where id_car=?&#xa;"
                                     timeout="10" xsi:type="jdbcPalette:JDBCQueryActivity">
                                     <PreparedParameters DataType="4"
                                     DataTypeDisplayValue="INTEGER" ParameterName="id_car"/>
@@ -1374,6 +1606,14 @@
                                     columnName="id_car"
                                     dataType="4"
                                     status="OptionalElement" typeName="int4"/>
+                                    <columnMetadata columnIndex="2"
+                                    columnName="from_date"
+                                    dataType="91"
+                                    status="OptionalElement" typeName="date"/>
+                                    <columnMetadata columnIndex="3"
+                                    columnName="to_date"
+                                    dataType="91"
+                                    status="OptionalElement" typeName="date"/>
                                     </value>
                                 </properties>
                             </activityConfig>
@@ -1388,7 +1628,7 @@
                         expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns3=&quot;http://www.example.org/AlreadyRent&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Throw-input&quot; match=&quot;/&quot;>&lt;tns3:AlreadyRent>&lt;tns3:NoRent>&lt;xsl:value-of select=&quot;concat(&amp;quot;Macchina già prenotata. Scegliere un&amp;quot;, &amp;quot;'&amp;quot;, &amp;quot;altra vettura.&amp;quot;)&quot;/>&lt;/tns3:NoRent>&lt;/tns3:AlreadyRent>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                 </tibex:inputBindings>
                 <bpws:targets>
-                    <bpws:target linkName="JDBCQueryToThrow"/>
+                    <bpws:target linkName="MapperToThrow"/>
                 </bpws:targets>
             </bpws:throw>
             <bpws:extensionActivity>
@@ -1404,7 +1644,7 @@
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+4be3b3c1-ee69-4a43-a7d8-3e24fa1f3273+input&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns8=&quot;http://www.example.org/CheckPrenotazione&quot; xmlns:tns9=&quot;http://www.example.org/ParamPrenotazione&quot; xmlns:tns=&quot;http://www.example.org/CheckUsername&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;IDUSERQuery&quot;/>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;JDBCUpdate-input&quot; match=&quot;/&quot;>&lt;tns5:jdbcUpdateActivityInput>&lt;id_user>&lt;xsl:choose>&lt;xsl:when test=&quot;exists($IDUSERQuery/Record[1]/id)&quot;>&lt;xsl:value-of select=&quot;$IDUSERQuery/Record[1]/id&quot;/>&lt;/xsl:when>&lt;xsl:otherwise>&lt;xsl:attribute name=&quot;xsi:nil&quot;>true&lt;/xsl:attribute>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;/id_user>&lt;id_car>&lt;xsl:value-of select=&quot;xsd:int($Start/tns9:User/tns:Category)&quot;/>&lt;/id_car>&lt;from_date>&lt;xsl:choose>&lt;xsl:when test=&quot;exists($Start/tns9:RentFlux/tns8:From_Date)&quot;>&lt;xsl:value-of select=&quot;$Start/tns9:RentFlux/tns8:From_Date&quot;/>&lt;/xsl:when>&lt;xsl:otherwise>&lt;xsl:attribute name=&quot;xsi:nil&quot;>true&lt;/xsl:attribute>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;/from_date>&lt;to_date>&lt;xsl:choose>&lt;xsl:when test=&quot;exists($Start/tns9:RentFlux/tns8:To_Date)&quot;>&lt;xsl:value-of select=&quot;$Start/tns9:RentFlux/tns8:To_Date&quot;/>&lt;/xsl:when>&lt;xsl:otherwise>&lt;xsl:attribute name=&quot;xsi:nil&quot;>true&lt;/xsl:attribute>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;/to_date>&lt;/tns5:jdbcUpdateActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+4be3b3c1-ee69-4a43-a7d8-3e24fa1f3273+input&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns8=&quot;http://www.example.org/CheckPrenotazione&quot; xmlns:tns9=&quot;http://www.example.org/ParamPrenotazione&quot; xmlns:tns10=&quot;http://www.example.org/CheckUsername&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;IDUSERQuery&quot;/>&#xa;    &lt;xsl:param name=&quot;Start&quot;/>&#xa;    &lt;xsl:template name=&quot;JDBCUpdate-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns5:jdbcUpdateActivityInput>&#xa;            &lt;id_user>&#xa;                &lt;xsl:choose>&#xa;                    &lt;xsl:when test=&quot;exists($IDUSERQuery/Record[1]/id)&quot;>&#xa;                        &lt;xsl:value-of select=&quot;$IDUSERQuery/Record[1]/id&quot;/>&#xa;                    &lt;/xsl:when>&#xa;                    &lt;xsl:otherwise>&#xa;                        &lt;xsl:attribute name=&quot;xsi:nil&quot;>true&lt;/xsl:attribute>&#xa;                    &lt;/xsl:otherwise>&#xa;                &lt;/xsl:choose>&#xa;            &lt;/id_user>&#xa;            &lt;id_car>&#xa;                &lt;xsl:value-of select=&quot;xsd:int($Start/tns9:User/tns10:Category)&quot;/>&#xa;            &lt;/id_car>&#xa;            &lt;from_date>&#xa;                &lt;xsl:choose>&#xa;                    &lt;xsl:when test=&quot;exists($Start/tns9:RentFlux/tns8:From_Date)&quot;>&#xa;                        &lt;xsl:value-of select=&quot;$Start/tns9:RentFlux/tns8:From_Date&quot;/>&#xa;                    &lt;/xsl:when>&#xa;                    &lt;xsl:otherwise>&#xa;                        &lt;xsl:attribute name=&quot;xsi:nil&quot;>true&lt;/xsl:attribute>&#xa;                    &lt;/xsl:otherwise>&#xa;                &lt;/xsl:choose>&#xa;            &lt;/from_date>&#xa;            &lt;to_date>&#xa;                &lt;xsl:choose>&#xa;                    &lt;xsl:when test=&quot;exists($Start/tns9:RentFlux/tns8:To_Date)&quot;>&#xa;                        &lt;xsl:value-of select=&quot;$Start/tns9:RentFlux/tns8:To_Date&quot;/>&#xa;                    &lt;/xsl:when>&#xa;                    &lt;xsl:otherwise>&#xa;                        &lt;xsl:attribute name=&quot;xsi:nil&quot;>true&lt;/xsl:attribute>&#xa;                    &lt;/xsl:otherwise>&#xa;                &lt;/xsl:choose>&#xa;            &lt;/to_date>&#xa;        &lt;/tns5:jdbcUpdateActivityInput>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -1442,7 +1682,8 @@
                     outputVariable="IDUSERQuery"
                     tibex:xpdlId="a79fcf3d-9e72-4717-a531-8f72ecc4d3a3" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
-                        <bpws:target linkName="JDBCQueryToEnd"/>
+                        <bpws:target linkName="EmptyToIDUSERQuery"/>
+                        <bpws:target linkName="MapperToIDUSERQuery"/>
                     </bpws:targets>
                     <bpws:sources>
                         <bpws:source linkName="JDBCQuery1ToJDBCUpdate"/>
@@ -1488,7 +1729,7 @@
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns7=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+71b89b39-83d7-49bb-9ef1-3a25847cbe82+input&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns=&quot;http://www.example.org/CheckUsername&quot; xmlns:tns9=&quot;http://www.example.org/ParamPrenotazione&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;CarQuery-input&quot; match=&quot;/&quot;>&lt;tns7:jdbcQueryActivityInput>&lt;id_car>&lt;xsl:value-of select=&quot;xsd:int($Start/tns9:User/tns:Category)&quot;/>&lt;/id_car>&lt;/tns7:jdbcQueryActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns7=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+71b89b39-83d7-49bb-9ef1-3a25847cbe82+input&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns10=&quot;http://www.example.org/CheckUsername&quot; xmlns:tns9=&quot;http://www.example.org/ParamPrenotazione&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;Start&quot;/>&#xa;    &lt;xsl:template name=&quot;CarQuery-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns7:jdbcQueryActivityInput>&#xa;            &lt;id_car>&#xa;                &lt;xsl:value-of select=&quot;xsd:int($Start/tns9:User/tns10:Category)&quot;/>&#xa;            &lt;/id_car>&#xa;        &lt;/tns7:jdbcQueryActivityInput>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -1501,7 +1742,7 @@
                                     <type href="http://ns.tibco.com/bw/palette/jdbc#//JDBCQueryActivity"/>
                                     <value maxRows="100"
                                     sharedResourceProperty="jdbcProperty"
-                                    sqlStatement="SELECT T1.*, T2.price, T3.from_date, T3.to_date&#xa;&#x9;FROM &quot;EsercizioCampari&quot;.cars T1&#xa;&#x9;inner join &quot;EsercizioCampari&quot;.category T2&#xa;&#x9;on T1.id_category=T2.id&#xa;&#x9;inner join &quot;EsercizioCampari&quot;.reservation T3&#xa;&#x9;on T1.id=T3.id_car&#xa;&#x9;where T1.id=?&#xa;"
+                                    sqlStatement="SELECT T1.*, T2.price, T3.from_date, T3.to_date, date_part('day', T3.to_date::timestamp-T3.from_date::timestamp) as days&#xa;&#x9;FROM &quot;EsercizioCampari&quot;.cars T1&#xa;&#x9;inner join &quot;EsercizioCampari&quot;.category T2&#xa;&#x9;on T1.id_category=T2.id&#xa;&#x9;inner join &quot;EsercizioCampari&quot;.reservation T3&#xa;&#x9;on T1.id=T3.id_car&#xa;&#x9;where T1.id=?&#xa;&#x9;order by T3.id desc&#xa;&#x9;limit 1"
                                     timeout="10" xsi:type="jdbcPalette:JDBCQueryActivity">
                                     <PreparedParameters DataType="4"
                                     DataTypeDisplayValue="INTEGER" ParameterName="id_car"/>
@@ -1539,6 +1780,10 @@
                                     columnName="to_date"
                                     dataType="91"
                                     status="OptionalElement" typeName="date"/>
+                                    <columnMetadata columnIndex="10"
+                                    columnName="days"
+                                    dataType="8"
+                                    status="OptionalElement" typeName="float8"/>
                                     </value>
                                 </properties>
                             </activityConfig>
@@ -1546,6 +1791,126 @@
                     </tibex:config>
                 </tibex:activityExtension>
             </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension inputVariable="Log1-input"
+                    name="Log1"
+                    tibex:xpdlId="c1bdef59-05d1-4172-9d59-b737d762ddb5" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="JDBCQueryToEnd1"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="Log1ToEnd"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log1-input&quot; match=&quot;/&quot;>&lt;tns2:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'EndVP'&quot;/>&lt;/message>&lt;/tns2:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.generalactivities.log"
+                            version="6.0.0.001"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:generalactivities="http://ns.tibco.com/bw/palette/generalactivities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/generalactivities#//Log"/>
+                                    <value controlBy="Application"
+                                    role="Info"
+                                    suppressJobInfo="true" xsi:type="generalactivities:Log"/>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension inputVariable="Log2-input"
+                    name="Log2"
+                    tibex:xpdlId="03c1e982-37c0-4333-9e7b-de392e674855" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="StartToEnd"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="Log2ToIDCarRentQuery"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log2-input&quot; match=&quot;/&quot;>&lt;tns2:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'StartVP'&quot;/>&lt;/message>&lt;/tns2:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.generalactivities.log"
+                            version="6.0.0.001"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:generalactivities="http://ns.tibco.com/bw/palette/generalactivities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/generalactivities#//Log"/>
+                                    <value controlBy="Application"
+                                    role="Info"
+                                    suppressJobInfo="true" xsi:type="generalactivities:Log"/>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension inputVariable="Mapper-input"
+                    name="Mapper" outputVariable="Mapper"
+                    tibex:xpdlId="36c1d033-a559-42a1-9369-6b2ff346f2a0" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="IDCarRentQueryToThrow"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="MapperToThrow">
+                            <tibex:DesignExpression>
+                                <tibex:expression
+                                    expression="##otherwise##" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
+                            </tibex:DesignExpression>
+                            <bpws:transitionCondition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[##otherwise##]]></bpws:transitionCondition>
+                        </bpws:source>
+                        <bpws:source linkName="MapperToIDUSERQuery">
+                            <tibex:DesignExpression>
+                                <tibex:expression
+                                    expression="sum($Mapper/ns19:Condition2)=0" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
+                            </tibex:DesignExpression>
+                            <bpws:transitionCondition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[sum($Mapper/ns19:Condition2)=0]]></bpws:transitionCondition>
+                        </bpws:source>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns11=&quot;http://www.example.org/MapperTest&quot; xmlns:tns9=&quot;http://www.example.org/ParamPrenotazione&quot; xmlns:tns8=&quot;http://www.example.org/CheckPrenotazione&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;IDCarRentQuery&quot;/>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;Mapper-input&quot; match=&quot;/&quot;>&lt;tns11:Condition>&lt;xsl:for-each select=&quot;$IDCarRentQuery/Record&quot;>&lt;xsl:choose>&lt;xsl:when test=&quot;(((($Start/tns9:RentFlux/tns8:From_Date lt from_date) and ($Start/tns9:RentFlux/tns8:To_Date lt from_date)) or (($Start/tns9:RentFlux/tns8:From_Date gt to_date) and ($Start/tns9:RentFlux/tns8:To_Date gt to_date))) and ($Start/tns9:RentFlux/tns8:To_Date gt $Start/tns9:RentFlux/tns8:From_Date))&quot;>&lt;tns11:Condition2>&lt;xsl:value-of select=&quot;0&quot;/>&lt;/tns11:Condition2>&lt;/xsl:when>&lt;xsl:otherwise>&lt;tns11:Condition2>&lt;xsl:value-of select=&quot;1&quot;/>&lt;/tns11:Condition2>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;/xsl:for-each>&lt;/tns11:Condition>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.generalactivities.mapper"
+                            version="6.0.0.001"
+                            xmlns:MapperTest="http://www.example.org/MapperTest"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:generalactivities="http://ns.tibco.com/bw/palette/generalactivities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/generalactivities#//Mapper"/>
+                                    <value
+                                    inputQName="MapperTest:Condition" xsi:type="generalactivities:Mapper"/>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:empty name="Empty" tibex:xpdlId="d7763864-3381-49fc-a08b-20c3033c43c8">
+                <bpws:targets>
+                    <bpws:target linkName="IDCarRentQueryToEmpty"/>
+                </bpws:targets>
+                <bpws:sources>
+                    <bpws:source linkName="EmptyToIDUSERQuery"/>
+                </bpws:sources>
+            </bpws:empty>
         </bpws:flow>
     </bpws:scope>
 </bpws:process>
