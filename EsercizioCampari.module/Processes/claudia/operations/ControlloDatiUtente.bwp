@@ -1250,7 +1250,7 @@
                                     <columnMetadata columnIndex="1"
                                     columnName="username"
                                     dataType="12"
-                                    status="OptionalElement" typeName="CHARACTER VARYING"/>
+                                    status="OptionalElement" typeName="varchar"/>
                                     </value>
                                 </properties>
                             </activityConfig>
