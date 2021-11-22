@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/ParamPrenotazione" xmlns:tns="http://www.example.org/ParamPrenotazione" elementFormDefault="qualified" xmlns:Q1="http://www.example.org/CheckUsername" xmlns:Q2="http://www.example.org/CheckPrenotazione">
+
+    <import namespace="http://www.example.org/CheckPrenotazione"></import>
+    <import namespace="http://www.example.org/CheckUsername"></import>
+    <element name="InfoFlux" type="tns:InfoFluxType"></element>
+    
+    <complexType name="InfoFluxType">
+    	<sequence>
+    		<element name="User" type="Q1:CheckUsernameType"></element>
+
+    		<element name="RentFlux" type="Q2:RentDateType"></element>
+    	</sequence>
+    </complexType>
+</schema>

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="eserciziocampari.massimo.main.RicercaAuto"
+    name="eserciziocampari.massimo.main.PrenotazioneAuto"
     suppressJoinFailure="yes"
-    targetNamespace="http://xmlns.example.com/20211119142742"
+    targetNamespace="http://xmlns.example.com/20211122094826"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
-    xmlns:ns="http://xmlns.example.com/20211119142742PLT"
+    xmlns:ns="http://xmlns.example.com/20211122094826PLT"
     xmlns:ns0="http://www.tibco.com/pe/EngineTypes"
     xmlns:ns1="http://www.tibco.com/pe/WriteToLogActivitySchema"
-    xmlns:ns2="http://www.example.org/parameters"
-    xmlns:ns3="http://www.example.org/ShowCars"
+    xmlns:ns2="http://www.example.org/ParamPrenotazione"
+    xmlns:ns3="http://www.example.org/RentValidation"
     xmlns:ns4="http://www.example.org/InvalidUser"
-    xmlns:ns5="http://www.example.org/NoResults"
-    xmlns:ns6="http://tns.tibco.com/bw/palette/internal/activityerror+39845cb5-eaa2-4aa8-916c-d58c9f1fbad1"
+    xmlns:ns5="http://www.example.org/AlreadyRent"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -195,44 +194,36 @@
             </xs:complexType>
             <xs:element name="ActivityInput" type="tns:LogParametersType"/>
         </xs:schema>
-        <schema elementFormDefault="unqualified"
-            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+39845cb5-eaa2-4aa8-916c-d58c9f1fbad1"
-            xmlns="http://www.w3.org/2001/XMLSchema"
-            xmlns:Q1="http://www.example.org/InvalidUser"
-            xmlns:Q2="http://www.example.org/NoResults" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+39845cb5-eaa2-4aa8-916c-d58c9f1fbad1">
-            <import namespace="http://www.example.org/NoResults"/>
-            <import namespace="http://www.example.org/InvalidUser"/>
-            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
-            <complexType name="ActivityErrorDataType">
-                <choice>
-                    <element maxOccurs="1" minOccurs="0" ref="Q1:InvalidUser"/>
-                    <element maxOccurs="1" minOccurs="0" ref="Q2:NoResults"/>
-                </choice>
-            </complexType>
-        </schema>
         <wsdl:definitions
-            targetNamespace="http://xmlns.example.com/20211119142742PLT"
+            targetNamespace="http://xmlns.example.com/20211122094826PLT"
             xmlns:extns="http://tns.tibco.com/bw/REST"
-            xmlns:extns1="http://www.example.org/CheckUsername"
-            xmlns:extns2="http://www.example.org/ShowCars"
+            xmlns:extns1="http://www.example.org/RentValidation"
+            xmlns:extns2="http://www.example.org/CheckPrenotazione"
+            xmlns:extns3="http://xmlns.example.com/PrenotazioneAuto/parameters"
             xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
             xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
-            xmlns:tns="http://xmlns.example.com/20211119142742PLT"
+            xmlns:tns="http://xmlns.example.com/20211122094826PLT"
             xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop"
             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <plnk:partnerLinkType name="partnerLinkType">
-                <plnk:role name="use" portType="tns:check"/>
+                <plnk:role name="use" portType="tns:prenotazioneauto"/>
             </plnk:partnerLinkType>
             <wsdl:import namespace="http://tns.tibco.com/bw/REST"/>
-            <wsdl:import namespace="http://www.example.org/CheckUsername"/>
-            <wsdl:import namespace="http://www.example.org/ShowCars"/>
+            <wsdl:import namespace="http://www.example.org/RentValidation"/>
+            <wsdl:import namespace="http://www.example.org/CheckPrenotazione"/>
+            <wsdl:import namespace="http://xmlns.example.com/PrenotazioneAuto/parameters"/>
             <wsdl:message name="postRequest">
-                <wsdl:part element="extns1:CheckUsername" name="Request" tibex:hasMultipleNamespaces="false"/>
+                <wsdl:part element="extns2:CheckPrenotazione"
+                    name="Request" tibex:hasMultipleNamespaces="false"/>
                 <wsdl:part element="extns:httpHeaders"
                     name="httpHeaders" tibex:source="bw.rest"/>
+                <wsdl:part
+                    element="extns3:prenotazioneautoPostParameters"
+                    name="parameters" tibex:source="bw.rest"/>
             </wsdl:message>
             <wsdl:message name="postResponse">
-                <wsdl:part element="extns2:ShowCars" name="Response" tibex:hasMultipleNamespaces="true"/>
+                <wsdl:part element="extns1:RentValidation"
+                    name="Response" tibex:hasMultipleNamespaces="true"/>
             </wsdl:message>
             <wsdl:message name="post4XXFaultMessage">
                 <wsdl:part element="extns:client4XXError" name="clientError"/>
@@ -240,13 +231,14 @@
             <wsdl:message name="post5XXFaultMessage">
                 <wsdl:part element="extns:server5XXError" name="serverError"/>
             </wsdl:message>
-            <wsdl:portType name="check" tibex:bw.rest.apipath="/check"
-                tibex:bw.rest.basepath="RicercaAuto"
-                tibex:bw.rest.resource="Service Descriptors/eserciziocampari.massimo.main.RicercaAuto-RicercaAuto.json"
+            <wsdl:portType name="prenotazioneauto"
+                tibex:bw.rest.apipath="/rent/{id_car}"
+                tibex:bw.rest.basepath="PrenotazioneAuto"
+                tibex:bw.rest.resource="Service Descriptors/eserciziocampari.massimo.main.PrenotazioneAuto-PrenotazioneAuto.json"
                 tibex:bw.rest.resource.source="generated" tibex:source="bw.rest.service">
-                <wsdl:documentation>RicercaAuto service</wsdl:documentation>
+                <wsdl:documentation>PrenotazioneAuto service</wsdl:documentation>
                 <wsdl:operation name="post">
-                    <wsdl:documentation>postRicercaAuto</wsdl:documentation>
+                    <wsdl:documentation>postPrenotazioneAuto</wsdl:documentation>
                     <wsdl:input message="tns:postRequest" name="postInput"/>
                     <wsdl:output message="tns:postResponse" name="postOutput"/>
                     <wsdl:fault message="tns:post4XXFaultMessage" name="clientFault"/>
@@ -256,7 +248,7 @@
         </wsdl:definitions>
     </tibex:Types>
     <tibex:ProcessInfo callable="false" createdBy="Kripta"
-        createdOn="Fri Nov 19 14:27:42 CET 2021" description=""
+        createdOn="Mon Nov 22 09:48:26 CET 2021" description=""
         extraErrorVars="true" modifiers="public"
         productVersion="6.7.0 HF3 V102 2021-08-10" scalable="true"
         singleton="true" stateless="true" type="IT"/>
@@ -441,8 +433,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.2"/>
 
                                     <layoutConstraint
-                                    x="245"
-                                    xsi:type="notation:Bounds" y="10"/>
+                                    x="333"
+                                    xsi:type="notation:Bounds" y="12"/>
                                     </children>
 
                                     <children type="4002">
@@ -495,7 +487,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.3"/>
 
                                     <layoutConstraint
-                                    xsi:type="notation:Bounds" y="9"/>
+                                    x="29"
+                                    xsi:type="notation:Bounds" y="7"/>
                                     </children>
 
                                     <children type="4002">
@@ -548,8 +541,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.4"/>
 
                                     <layoutConstraint
-                                    x="123"
-                                    xsi:type="notation:Bounds" y="10"/>
+                                    x="171"
+                                    xsi:type="notation:Bounds" y="18"/>
                                     </children>
 
                                     <children type="4002">
@@ -602,8 +595,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.5"/>
 
                                     <layoutConstraint
-                                    x="381"
-                                    xsi:type="notation:Bounds" y="10"/>
+                                    x="436"
+                                    xsi:type="notation:Bounds" y="12"/>
                                     </children>
 
                                     <styles xsi:type="notation:DrawerStyle"/>
@@ -629,8 +622,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity"/>
 
                                     <layoutConstraint
-                                    height="108"
-                                    width="516" xsi:type="notation:Bounds"/>
+                                    height="103"
+                                    width="621" xsi:type="notation:Bounds"/>
                                     </children>
 
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -649,8 +642,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity"/>
 
                                     <layoutConstraint
-                                    height="96"
-                                    width="519"
+                                    height="91"
+                                    width="624"
                                     x="15" xsi:type="notation:Bounds"/>
                                     </children>
 
@@ -739,8 +732,8 @@
                                     <layoutConstraint
                                     height="40"
                                     width="40"
-                                    x="27"
-                                    xsi:type="notation:Bounds" y="62"/>
+                                    x="16"
+                                    xsi:type="notation:Bounds" y="53"/>
                                     </children>
 
                                     <children type="4002">
@@ -793,8 +786,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@faultHandlers/@catch.0/@activity/@activity/@activities.1"/>
 
                                     <layoutConstraint
-                                    x="171"
-                                    xsi:type="notation:Bounds" y="62"/>
+                                    x="169"
+                                    xsi:type="notation:Bounds" y="53"/>
                                     </children>
 
                                     <styles xsi:type="notation:DrawerStyle"/>
@@ -819,7 +812,7 @@
 
                                     <layoutConstraint
                                     height="168"
-                                    width="438" xsi:type="notation:Bounds"/>
+                                    width="543" xsi:type="notation:Bounds"/>
                                     </children>
 
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -921,8 +914,8 @@
                                     <layoutConstraint
                                     height="40"
                                     width="40"
-                                    x="22"
-                                    xsi:type="notation:Bounds" y="60"/>
+                                    x="21"
+                                    xsi:type="notation:Bounds" y="64"/>
                                     </children>
 
                                     <children type="4002">
@@ -975,8 +968,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@faultHandlers/@catch.1/@activity/@activity/@activities.1"/>
 
                                     <layoutConstraint
-                                    x="155"
-                                    xsi:type="notation:Bounds" y="60"/>
+                                    x="173"
+                                    xsi:type="notation:Bounds" y="64"/>
                                     </children>
 
                                     <styles xsi:type="notation:DrawerStyle"/>
@@ -1001,7 +994,7 @@
 
                                     <layoutConstraint
                                     height="169"
-                                    width="438" xsi:type="notation:Bounds"/>
+                                    width="543" xsi:type="notation:Bounds"/>
                                     </children>
 
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -1039,9 +1032,9 @@
 
                                     <layoutConstraint
                                     height="380"
-                                    width="499"
+                                    width="604"
                                     x="21"
-                                    xsi:type="notation:Bounds" y="131"/>
+                                    xsi:type="notation:Bounds" y="126"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -1055,8 +1048,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity"/>
 
                                     <layoutConstraint
-                                    height="512"
-                                    width="559" xsi:type="notation:Bounds"/>
+                                    height="507"
+                                    width="664" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -1115,8 +1108,8 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0"/>
                                     <layoutConstraint
-                                    height="531"
-                                    width="621"
+                                    height="526"
+                                    width="726"
                                     x="2" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -1129,7 +1122,7 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint
-                                    height="561" width="640" xsi:type="notation:Bounds"/>
+                                    height="556" width="696" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -1143,8 +1136,8 @@
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity"/>
-                                    <layoutConstraint height="571"
-                                    width="650" xsi:type="notation:Bounds"/>
+                                    <layoutConstraint height="566"
+                                    width="755" xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
                                 <styles xsi:type="notation:FilteringStyle"/>
@@ -1153,7 +1146,7 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity"/>
-                            <layoutConstraint height="571" width="653" xsi:type="notation:Bounds"/>
+                            <layoutConstraint height="566" width="758" xsi:type="notation:Bounds"/>
                         </children>
                         <styles xsi:type="notation:SortingStyle"/>
                         <styles xsi:type="notation:FilteringStyle"/>
@@ -1163,7 +1156,7 @@
                     <styles xsi:type="bwnotation:BackgroundStyle"/>
                     <styles xsi:type="bwnotation:ResizingStyle"/>
                     <element href="//0/@process/@activity"/>
-                    <layoutConstraint height="595" width="653" x="1"
+                    <layoutConstraint height="590" width="758" x="1"
                         xsi:type="notation:Bounds" y="1"/>
                 </children>
                 <styles xsi:type="notation:SortingStyle"/>
@@ -1172,7 +1165,7 @@
             </children>
             <styles fontName="Segoe UI" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="647" width="995" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="642" width="1100" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
@@ -1196,7 +1189,7 @@
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@links/@children.1"/>
-            <bendpoints points="[25, 1, -80, 0]$[81, 0, -24, -1]" xsi:type="notation:RelativeBendpoints"/>
+            <bendpoints points="[25, 2, -117, -9]$[118, 9, -24, -2]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
             source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.1/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2"
@@ -1207,7 +1200,7 @@
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@links/@children.2"/>
-            <bendpoints points="[25, 0, -115, 0]$[116, 0, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
+            <bendpoints points="[25, -6, -137, 0]$[138, 0, -24, 6]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
             source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.1/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0"
@@ -1229,7 +1222,7 @@
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@links/@children.4"/>
-            <bendpoints points="[25, 4, -90, -14]$[103, 16, -12, -2]" xsi:type="notation:RelativeBendpoints"/>
+            <bendpoints points="[25, 2, -140, -14]$[153, 14, -12, -2]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
             source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.1/@children.0/@children.0/@children.1/@children.0/@children.0/@children.1/@children.0/@children.0/@children.0"
@@ -1256,23 +1249,32 @@
     </notation:Diagram>
     <tibex:NamespaceRegistry enabled="true">
         <tibex:namespaceItem
-            namespace="http://www.example.org/parameters" prefix="tns1"/>
+            namespace="http://www.example.org/ParamPrenotazione" prefix="tns1"/>
         <tibex:namespaceItem
-            namespace="http://www.example.org/CheckUsername" prefix="tns"/>
+            namespace="http://www.example.org/CheckUsername" prefix="tns2"/>
         <tibex:namespaceItem
-            namespace="http://xmlns.example.com/20211119142742PLT" prefix="tns2"/>
+            namespace="http://www.example.org/CheckPrenotazione" prefix="tns"/>
         <tibex:namespaceItem
-            namespace="http://www.tibco.com/pe/WriteToLogActivitySchema" prefix="tns3"/>
+            namespace="http://xmlns.example.com/PrenotazioneAuto/parameters" prefix="tns3"/>
+        <tibex:namespaceItem
+            namespace="http://xmlns.example.com/20211122094826PLT" prefix="tns4"/>
+        <tibex:namespaceItem
+            namespace="http://www.tibco.com/pe/WriteToLogActivitySchema" prefix="tns5"/>
+        <tibex:namespaceItem
+            namespace="http://www.example.org/InvalidUser" prefix="tns6"/>
+        <tibex:namespaceItem
+            namespace="http://www.example.org/RentValidation" prefix="tns7"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/REST"/>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/CheckUsername"/>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/ShowCars"/>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/parameters"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/RentValidation"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/CheckPrenotazione"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/ParamPrenotazione"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://xmlns.example.com/PrenotazioneAuto/parameters"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/AlreadyRent"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/InvalidUser"/>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/NoResults"/>
     <bpws:partnerLinks>
-        <bpws:partnerLink myRole="use" name="check"
-            partnerLinkType="ns:partnerLinkType" sca-bpel:ignore="false" sca-bpel:service="check"/>
+        <bpws:partnerLink myRole="use" name="prenotazioneauto"
+            partnerLinkType="ns:partnerLinkType" sca-bpel:ignore="false" sca-bpel:service="prenotazioneauto"/>
     </bpws:partnerLinks>
     <bpws:variables>
         <bpws:variable element="ns0:ProcessContext"
@@ -1281,18 +1283,15 @@
         <bpws:variable messageType="ns:postResponse"
             name="postOut-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:ActivityInput" name="Log-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns2:parameters"
-            name="RicercaAutoOrchestration-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns3:ShowCars"
-            name="RicercaAutoOrchestration" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:InfoFlux"
+            name="PrenotazioneAutoOrchestration-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns3:RentValidation"
+            name="PrenotazioneAutoOrchestration" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:ActivityInput" name="Log1-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:ActivityInput" name="Log2-input" sca-bpel:internal="true"/>
         <bpws:variable messageType="ns:postResponse" name="Reply-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:ActivityInput" name="Log3-input" sca-bpel:internal="true"/>
         <bpws:variable messageType="ns:postResponse" name="Reply1-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns6:ActivityErrorData"
-            name="_error_RicercaAutoOrchestration" sca-bpel:internal="true"/>
-        <bpws:variable element="ns0:ErrorReport" name="_error" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -1305,15 +1304,16 @@
     <bpws:scope name="scope">
         <bpws:flow name="flow">
             <bpws:links/>
-            <bpws:pick createInstance="yes" name="pick" tibex:xpdlId="387df99a-94a4-42a2-a40d-75fcff333a76">
-                <bpws:onMessage operation="post" partnerLink="check"
-                    portType="ns:check"
-                    tibex:xpdlId="a925a3f9-912a-4aa6-bb54-9e5cb70cf8da" variable="post">
+            <bpws:pick createInstance="yes" name="pick" tibex:xpdlId="7922d364-c737-4e61-8364-92afe8cf584f">
+                <bpws:onMessage operation="post"
+                    partnerLink="prenotazioneauto"
+                    portType="ns:prenotazioneauto"
+                    tibex:xpdlId="6a9ce764-462d-4c9f-9495-db2002923085" variable="post">
                     <bpws:scope name="scope1">
                         <bpws:faultHandlers>
                             <bpws:catch faultElement="ns4:InvalidUser"
                                 faultName="ns4:InvalidUser"
-                                faultVariable="InvalidUser" tibex:xpdlId="f254b825-495b-4c8a-a8a4-05cf83c8b0a3">
+                                faultVariable="InvalidUser" tibex:xpdlId="4e6d80cc-cefa-44c8-a306-abc78845365f">
                                 <bpws:scope name="scope2">
                                     <bpws:flow name="flow2">
                                     <bpws:links>
@@ -1324,13 +1324,13 @@
                                     <tibex:activityExtension
                                     inputVariable="Log2-input"
                                     name="Log2"
-                                    tibex:xpdlId="e43f9e80-dc99-47dc-8cf5-b144c7ef1ccd" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                                    tibex:xpdlId="452fbb68-f1fc-412c-a3f0-d70a00be3f44" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:sources>
                                     <bpws:source linkName="Log2ToReply"/>
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns3=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log2-input&quot; match=&quot;/&quot;>&lt;tns3:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'InvalidUser-Main'&quot;/>&lt;/message>&lt;/tns3:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log2-input&quot; match=&quot;/&quot;>&lt;tns5:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'InvalidUser-MainPA'&quot;/>&lt;/message>&lt;/tns5:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:config>
                                     <bwext:BWActivity
@@ -1355,14 +1355,14 @@
                                     </bpws:extensionActivity>
                                     <bpws:reply name="Reply"
                                     operation="post"
-                                    partnerLink="check"
-                                    portType="ns:check"
-                                    tibex:xpdlId="2066a696-aae2-4542-a247-38ffc67e0b97" variable="Reply-input">
+                                    partnerLink="prenotazioneauto"
+                                    portType="ns:prenotazioneauto"
+                                    tibex:xpdlId="620e9400-543c-41dc-8453-0cc6ffa8d32e" variable="Reply-input">
                                     <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns2="http://xmlns.example.com/20211119142742PLT" xmlns:tns="http://www.example.org/ShowCars" xmlns:tns1="http://www.example.org/InvalidUser" version="2.0"&gt;&lt;xsl:template name="Reply-input" match="/"&gt;&lt;tns2:postResponse&gt;&lt;Response&gt;&lt;tns:ShowCars&gt;&lt;tns:NoAccess&gt;&lt;tns1:DenyAccess&gt;&lt;xsl:value-of select="'Accesso negato. Username e/o Password non validi'"/&gt;&lt;/tns1:DenyAccess&gt;&lt;tns1:TryRegistration&gt;&lt;xsl:value-of select="'Sei un nuovo utente? Registrati andando al link /user'"/&gt;&lt;/tns1:TryRegistration&gt;&lt;/tns:NoAccess&gt;&lt;/tns:ShowCars&gt;&lt;/Response&gt;&lt;/tns2:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns4="http://xmlns.example.com/20211122094826PLT" xmlns:tns7="http://www.example.org/RentValidation" xmlns:tns6="http://www.example.org/InvalidUser" version="2.0"&gt;&lt;xsl:template name="Reply-input" match="/"&gt;&lt;tns4:postResponse&gt;&lt;Response&gt;&lt;tns7:RentValidation&gt;&lt;tns7:InvalidUser&gt;&lt;tns6:DenyAccess&gt;&lt;xsl:value-of select="'Accesso negato. Username e/o Password non validi'"/&gt;&lt;/tns6:DenyAccess&gt;&lt;tns6:TryRegistration&gt;&lt;xsl:value-of select="'Sei un nuovo utente? Registrati andando al link /user'"/&gt;&lt;/tns6:TryRegistration&gt;&lt;/tns7:InvalidUser&gt;&lt;/tns7:RentValidation&gt;&lt;/Response&gt;&lt;/tns4:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
                                     <tibex:inputBindings>
                                     <tibex:partBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://xmlns.example.com/20211119142742PLT&quot; xmlns:tns=&quot;http://www.example.org/ShowCars&quot; xmlns:tns1=&quot;http://www.example.org/InvalidUser&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;Reply-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns:ShowCars>&#xa;            &lt;tns:NoAccess>&#xa;                &lt;tns1:DenyAccess>&#xa;                    &lt;xsl:value-of select=&quot;'Accesso negato. Username e/o Password non validi'&quot;/>&#xa;                &lt;/tns1:DenyAccess>&#xa;                &lt;tns1:TryRegistration>&#xa;                    &lt;xsl:value-of select=&quot;'Sei un nuovo utente? Registrati andando al link /user'&quot;/>&#xa;                &lt;/tns1:TryRegistration>&#xa;            &lt;/tns:NoAccess>&#xa;        &lt;/tns:ShowCars>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns4=&quot;http://xmlns.example.com/20211122094826PLT&quot; xmlns:tns7=&quot;http://www.example.org/RentValidation&quot; xmlns:tns6=&quot;http://www.example.org/InvalidUser&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;Reply-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns7:RentValidation>&#xa;            &lt;tns7:InvalidUser>&#xa;                &lt;tns6:DenyAccess>&#xa;                    &lt;xsl:value-of select=&quot;'Accesso negato. Username e/o Password non validi'&quot;/>&#xa;                &lt;/tns6:DenyAccess>&#xa;                &lt;tns6:TryRegistration>&#xa;                    &lt;xsl:value-of select=&quot;'Sei un nuovo utente? Registrati andando al link /user'&quot;/>&#xa;                &lt;/tns6:TryRegistration>&#xa;            &lt;/tns7:InvalidUser>&#xa;        &lt;/tns7:RentValidation>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <bpws:targets>
                                     <bpws:target linkName="Log2ToReply"/>
@@ -1372,9 +1372,9 @@
                                     </bpws:flow>
                                 </bpws:scope>
                             </bpws:catch>
-                            <bpws:catch faultElement="ns5:NoResults"
-                                faultName="ns5:NoResults"
-                                faultVariable="NoResults" tibex:xpdlId="8342b547-4514-4332-bf4c-5f316089de0a">
+                            <bpws:catch faultElement="ns5:AlreadyRent"
+                                faultName="ns5:AlreadyRent"
+                                faultVariable="AlreadyRent" tibex:xpdlId="4b3f4392-5634-4452-98d6-0de8d3e55342">
                                 <bpws:scope name="scope3">
                                     <bpws:flow name="flow3">
                                     <bpws:links>
@@ -1385,13 +1385,13 @@
                                     <tibex:activityExtension
                                     inputVariable="Log3-input"
                                     name="Log3"
-                                    tibex:xpdlId="ad4f9319-6560-4717-bef2-7ff0b83d20f6" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                                    tibex:xpdlId="9dd7cbc8-53ae-417d-944c-1900b08a3144" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:sources>
                                     <bpws:source linkName="Log3ToReply1"/>
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns3=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log3-input&quot; match=&quot;/&quot;>&lt;tns3:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'NoResult-Main'&quot;/>&lt;/message>&lt;/tns3:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log3-input&quot; match=&quot;/&quot;>&lt;tns5:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'AlreadyRent-MainPA'&quot;/>&lt;/message>&lt;/tns5:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:config>
                                     <bwext:BWActivity
@@ -1416,14 +1416,14 @@
                                     </bpws:extensionActivity>
                                     <bpws:reply name="Reply1"
                                     operation="post"
-                                    partnerLink="check"
-                                    portType="ns:check"
-                                    tibex:xpdlId="690c513e-bea1-48b8-b943-e4cb6f9fd2a8" variable="Reply1-input">
+                                    partnerLink="prenotazioneauto"
+                                    portType="ns:prenotazioneauto"
+                                    tibex:xpdlId="c7b38973-7d2b-4a4a-90c9-6d2a7618a25d" variable="Reply1-input">
                                     <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns="http://www.example.org/NoResults" xmlns:tns2="http://xmlns.example.com/20211119142742PLT" xmlns:tns1="http://www.example.org/ShowCars" version="2.0"&gt;&lt;xsl:param name="NoResults"/&gt;&lt;xsl:template name="Reply1-input" match="/"&gt;&lt;tns2:postResponse&gt;&lt;Response&gt;&lt;tns1:ShowCars&gt;&lt;tns1:NoMatching&gt;&lt;xsl:value-of select="$NoResults/tns:VoidSearch"/&gt;&lt;/tns1:NoMatching&gt;&lt;/tns1:ShowCars&gt;&lt;/Response&gt;&lt;/tns2:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns4="http://xmlns.example.com/20211122094826PLT" xmlns:tns7="http://www.example.org/RentValidation" version="2.0"&gt;&lt;xsl:template name="Reply1-input" match="/"&gt;&lt;tns4:postResponse&gt;&lt;Response&gt;&lt;tns7:RentValidation&gt;&lt;tns7:NoRent&gt;&lt;xsl:value-of select="'La macchina selezionata è già stata prenotata per quelle date. Prova a prenotare un', &amp;quot;'&amp;quot;, 'altra vettura o selezionare date differenti'"/&gt;&lt;/tns7:NoRent&gt;&lt;/tns7:RentValidation&gt;&lt;/Response&gt;&lt;/tns4:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
                                     <tibex:inputBindings>
                                     <tibex:partBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/NoResults&quot; xmlns:tns2=&quot;http://xmlns.example.com/20211119142742PLT&quot; xmlns:tns1=&quot;http://www.example.org/ShowCars&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;NoResults&quot;/>&#xa;    &lt;xsl:template name=&quot;Reply1-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns1:ShowCars>&#xa;            &lt;tns1:NoMatching>&#xa;                &lt;xsl:value-of select=&quot;$NoResults/tns:VoidSearch&quot;/>&#xa;            &lt;/tns1:NoMatching>&#xa;        &lt;/tns1:ShowCars>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns4=&quot;http://xmlns.example.com/20211122094826PLT&quot; xmlns:tns7=&quot;http://www.example.org/RentValidation&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;Reply1-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns7:RentValidation>&#xa;            &lt;tns7:NoRent>&#xa;                &lt;xsl:value-of select=&quot;'La macchina selezionata è già stata prenotata per quelle date. Prova a prenotare un', &amp;quot;'&amp;quot;, 'altra vettura o selezionare date differenti'&quot;/>&#xa;            &lt;/tns7:NoRent>&#xa;        &lt;/tns7:RentValidation>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <bpws:targets>
                                     <bpws:target linkName="Log3ToReply1"/>
@@ -1437,67 +1437,81 @@
                             <bpws:links>
                                 <bpws:link name="OnMessageStartToLog" tibex:linkType="SUCCESS"/>
                                 <bpws:link
-                                    name="LogToRicercaAutoOrchestration" tibex:linkType="SUCCESS"/>
+                                    name="LogToPrenotazioneAutoOrchestration" tibex:linkType="SUCCESS"/>
                                 <bpws:link
-                                    name="RicercaAutoOrchestrationTopostOut" tibex:linkType="SUCCESS"/>
+                                    name="PrenotazioneAutoOrchestrationTopostOut" tibex:linkType="SUCCESS"/>
                                 <bpws:link name="postOutToLog1" tibex:linkType="SUCCESS"/>
                                 <bpws:link name="Log1ToOnMessageEnd" tibex:linkType="SUCCESS"/>
                             </bpws:links>
                             <bpws:empty name="OnMessageStart"
-                                tibex:constructor="onMessageStart" tibex:xpdlId="d061f719-b409-40bf-8e6b-85139470139e">
+                                tibex:constructor="onMessageStart" tibex:xpdlId="433f74b3-3df9-4607-9cd5-7bc6931ae923">
                                 <bpws:sources>
                                     <bpws:source linkName="OnMessageStartToLog"/>
                                 </bpws:sources>
                             </bpws:empty>
                             <bpws:empty name="OnMessageEnd"
-                                tibex:constructor="onMessageEnd" tibex:xpdlId="25635153-da97-44be-b7af-4f72eac399e4">
+                                tibex:constructor="onMessageEnd" tibex:xpdlId="8fb589b0-5153-47a5-afae-cbe9d6f8be49">
                                 <bpws:targets>
                                     <bpws:target linkName="Log1ToOnMessageEnd"/>
                                 </bpws:targets>
                             </bpws:empty>
                             <bpws:reply name="postOut" operation="post"
-                                partnerLink="check" portType="ns:check"
-                                tibex:xpdlId="a542d738-3156-454f-84ae-18ce1f08dbcf" variable="postOut-input">
+                                partnerLink="prenotazioneauto"
+                                portType="ns:prenotazioneauto"
+                                tibex:xpdlId="9945742a-0dfe-4ea3-bf0b-19a5b1dce64b" variable="postOut-input">
                                 <tibex:inputBindings>
                                     <tibex:partBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://xmlns.example.com/20211119142742PLT&quot; xmlns:tns4=&quot;http://www.example.org/ShowCars&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;RicercaAutoOrchestration&quot;/>&#xa;    &lt;xsl:template name=&quot;postOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns4:ShowCars>&#xa;            &lt;xsl:for-each select=&quot;$RicercaAutoOrchestration/tns4:ShopWindow&quot;>&#xa;                &lt;tns4:ShopWindow>&#xa;                    &lt;tns4:Brand>&#xa;                        &lt;xsl:value-of select=&quot;tns4:Brand&quot;/>&#xa;                    &lt;/tns4:Brand>&#xa;                    &lt;tns4:Model>&#xa;                        &lt;xsl:value-of select=&quot;tns4:Model&quot;/>&#xa;                    &lt;/tns4:Model>&#xa;                    &lt;tns4:Category>&#xa;                        &lt;xsl:value-of select=&quot;tns4:Category&quot;/>&#xa;                    &lt;/tns4:Category>&#xa;                    &lt;tns4:Optional>&#xa;                        &lt;xsl:value-of select=&quot;tns4:Optional&quot;/>&#xa;                    &lt;/tns4:Optional>&#xa;                    &lt;tns4:Surcharge>&#xa;                        &lt;xsl:value-of select=&quot;tns4:Surcharge&quot;/>&#xa;                    &lt;/tns4:Surcharge>&#xa;                    &lt;tns4:Price>&#xa;                        &lt;xsl:value-of select=&quot;tns4:Price&quot;/>&#xa;                    &lt;/tns4:Price>&#xa;                &lt;/tns4:ShopWindow>&#xa;            &lt;/xsl:for-each>&#xa;        &lt;/tns4:ShowCars>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns4=&quot;http://xmlns.example.com/20211122094826PLT&quot; xmlns:tns7=&quot;http://www.example.org/RentValidation&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;PrenotazioneAutoOrchestration&quot;/>&#xa;    &lt;xsl:template name=&quot;postOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns7:RentValidation>&#xa;            &lt;xsl:if test=&quot;$PrenotazioneAutoOrchestration/tns7:Username&quot;>&#xa;                &lt;tns7:Username>&#xa;                    &lt;xsl:value-of select=&quot;$PrenotazioneAutoOrchestration/tns7:Username&quot;/>&#xa;                &lt;/tns7:Username>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$PrenotazioneAutoOrchestration/tns7:Brand&quot;>&#xa;                &lt;tns7:Brand>&#xa;                    &lt;xsl:value-of select=&quot;$PrenotazioneAutoOrchestration/tns7:Brand&quot;/>&#xa;                &lt;/tns7:Brand>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$PrenotazioneAutoOrchestration/tns7:Model&quot;>&#xa;                &lt;tns7:Model>&#xa;                    &lt;xsl:value-of select=&quot;$PrenotazioneAutoOrchestration/tns7:Model&quot;/>&#xa;                &lt;/tns7:Model>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$PrenotazioneAutoOrchestration/tns7:From_Date&quot;>&#xa;                &lt;tns7:From_Date>&#xa;                    &lt;xsl:value-of select=&quot;$PrenotazioneAutoOrchestration/tns7:From_Date&quot;/>&#xa;                &lt;/tns7:From_Date>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$PrenotazioneAutoOrchestration/tns7:To_Date&quot;>&#xa;                &lt;tns7:To_Date>&#xa;                    &lt;xsl:value-of select=&quot;$PrenotazioneAutoOrchestration/tns7:To_Date&quot;/>&#xa;                &lt;/tns7:To_Date>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$PrenotazioneAutoOrchestration/tns7:PriceADay&quot;>&#xa;                &lt;tns7:PriceADay>&#xa;                    &lt;xsl:value-of select=&quot;$PrenotazioneAutoOrchestration/tns7:PriceADay&quot;/>&#xa;                &lt;/tns7:PriceADay>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$PrenotazioneAutoOrchestration/tns7:PriceTotal&quot;>&#xa;                &lt;tns7:PriceTotal>&#xa;                    &lt;xsl:value-of select=&quot;$PrenotazioneAutoOrchestration/tns7:PriceTotal&quot;/>&#xa;                &lt;/tns7:PriceTotal>&#xa;            &lt;/xsl:if>&#xa;        &lt;/tns7:RentValidation>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                 </tibex:inputBindings>
                                 <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns2="http://xmlns.example.com/20211119142742PLT" xmlns:tns4="http://www.example.org/ShowCars" version="2.0"&gt;
-    &lt;xsl:param name="RicercaAutoOrchestration"/&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns4="http://xmlns.example.com/20211122094826PLT" xmlns:tns7="http://www.example.org/RentValidation" version="2.0"&gt;
+    &lt;xsl:param name="PrenotazioneAutoOrchestration"/&gt;
     &lt;xsl:template name="postOut-input" match="/"&gt;
-        &lt;tns2:postResponse&gt;
+        &lt;tns4:postResponse&gt;
             &lt;Response&gt;
-                &lt;tns4:ShowCars&gt;
-                    &lt;xsl:for-each select="$RicercaAutoOrchestration/tns4:ShopWindow"&gt;
-                        &lt;tns4:ShopWindow&gt;
-                            &lt;tns4:Brand&gt;
-                                &lt;xsl:value-of select="tns4:Brand"/&gt;
-                            &lt;/tns4:Brand&gt;
-                            &lt;tns4:Model&gt;
-                                &lt;xsl:value-of select="tns4:Model"/&gt;
-                            &lt;/tns4:Model&gt;
-                            &lt;tns4:Category&gt;
-                                &lt;xsl:value-of select="tns4:Category"/&gt;
-                            &lt;/tns4:Category&gt;
-                            &lt;tns4:Optional&gt;
-                                &lt;xsl:value-of select="tns4:Optional"/&gt;
-                            &lt;/tns4:Optional&gt;
-                            &lt;tns4:Surcharge&gt;
-                                &lt;xsl:value-of select="tns4:Surcharge"/&gt;
-                            &lt;/tns4:Surcharge&gt;
-                            &lt;tns4:Price&gt;
-                                &lt;xsl:value-of select="tns4:Price"/&gt;
-                            &lt;/tns4:Price&gt;
-                        &lt;/tns4:ShopWindow&gt;
-                    &lt;/xsl:for-each&gt;
-                &lt;/tns4:ShowCars&gt;
+                &lt;tns7:RentValidation&gt;
+                    &lt;xsl:if test="$PrenotazioneAutoOrchestration/tns7:Username"&gt;
+                        &lt;tns7:Username&gt;
+                            &lt;xsl:value-of select="$PrenotazioneAutoOrchestration/tns7:Username"/&gt;
+                        &lt;/tns7:Username&gt;
+                    &lt;/xsl:if&gt;
+                    &lt;xsl:if test="$PrenotazioneAutoOrchestration/tns7:Brand"&gt;
+                        &lt;tns7:Brand&gt;
+                            &lt;xsl:value-of select="$PrenotazioneAutoOrchestration/tns7:Brand"/&gt;
+                        &lt;/tns7:Brand&gt;
+                    &lt;/xsl:if&gt;
+                    &lt;xsl:if test="$PrenotazioneAutoOrchestration/tns7:Model"&gt;
+                        &lt;tns7:Model&gt;
+                            &lt;xsl:value-of select="$PrenotazioneAutoOrchestration/tns7:Model"/&gt;
+                        &lt;/tns7:Model&gt;
+                    &lt;/xsl:if&gt;
+                    &lt;xsl:if test="$PrenotazioneAutoOrchestration/tns7:From_Date"&gt;
+                        &lt;tns7:From_Date&gt;
+                            &lt;xsl:value-of select="$PrenotazioneAutoOrchestration/tns7:From_Date"/&gt;
+                        &lt;/tns7:From_Date&gt;
+                    &lt;/xsl:if&gt;
+                    &lt;xsl:if test="$PrenotazioneAutoOrchestration/tns7:To_Date"&gt;
+                        &lt;tns7:To_Date&gt;
+                            &lt;xsl:value-of select="$PrenotazioneAutoOrchestration/tns7:To_Date"/&gt;
+                        &lt;/tns7:To_Date&gt;
+                    &lt;/xsl:if&gt;
+                    &lt;xsl:if test="$PrenotazioneAutoOrchestration/tns7:PriceADay"&gt;
+                        &lt;tns7:PriceADay&gt;
+                            &lt;xsl:value-of select="$PrenotazioneAutoOrchestration/tns7:PriceADay"/&gt;
+                        &lt;/tns7:PriceADay&gt;
+                    &lt;/xsl:if&gt;
+                    &lt;xsl:if test="$PrenotazioneAutoOrchestration/tns7:PriceTotal"&gt;
+                        &lt;tns7:PriceTotal&gt;
+                            &lt;xsl:value-of select="$PrenotazioneAutoOrchestration/tns7:PriceTotal"/&gt;
+                        &lt;/tns7:PriceTotal&gt;
+                    &lt;/xsl:if&gt;
+                &lt;/tns7:RentValidation&gt;
             &lt;/Response&gt;
-        &lt;/tns2:postResponse&gt;
+        &lt;/tns4:postResponse&gt;
     &lt;/xsl:template&gt;
 &lt;/xsl:stylesheet&gt;</tibex:inputBinding>
                                 <bpws:targets>
-                                    <bpws:target linkName="RicercaAutoOrchestrationTopostOut"/>
+                                    <bpws:target linkName="PrenotazioneAutoOrchestrationTopostOut"/>
                                 </bpws:targets>
                                 <bpws:sources>
                                     <bpws:source linkName="postOutToLog1"/>
@@ -1506,16 +1520,16 @@
                             <bpws:extensionActivity>
                                 <tibex:activityExtension
                                     inputVariable="Log-input" name="Log"
-                                    tibex:xpdlId="e6f684e0-66f8-4bcd-9f09-80f01c876945" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                                    tibex:xpdlId="6f22503a-13d7-4b50-ab82-0e8522b93a59" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:targets>
                                     <bpws:target linkName="OnMessageStartToLog"/>
                                     </bpws:targets>
                                     <bpws:sources>
-                                    <bpws:source linkName="LogToRicercaAutoOrchestration"/>
+                                    <bpws:source linkName="LogToPrenotazioneAutoOrchestration"/>
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns3=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log-input&quot; match=&quot;/&quot;>&lt;tns3:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'StartMain'&quot;/>&lt;/message>&lt;/tns3:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log-input&quot; match=&quot;/&quot;>&lt;tns5:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'StartMainPA'&quot;/>&lt;/message>&lt;/tns5:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:config>
                                     <bwext:BWActivity
@@ -1540,32 +1554,32 @@
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
                                 <tibex:extActivity
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/CheckUsername&quot; xmlns:tns1=&quot;http://www.example.org/parameters&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;RicercaAutoOrchestration-input&quot; match=&quot;/&quot;>&lt;tns1:parameters>&lt;xsl:if test=&quot;$post/Request/tns:CheckUsername/tns:Username&quot;>&lt;tns1:username>&lt;xsl:value-of select=&quot;$post/Request/tns:CheckUsername/tns:Username&quot;/>&lt;/tns1:username>&lt;/xsl:if>&lt;xsl:if test=&quot;$post/Request/tns:CheckUsername/tns:Category&quot;>&lt;tns1:category>&lt;xsl:value-of select=&quot;$post/Request/tns:CheckUsername/tns:Category&quot;/>&lt;/tns1:category>&lt;/xsl:if>&lt;xsl:if test=&quot;$post/Request/tns:CheckUsername/tns:Password&quot;>&lt;tns1:password>&lt;xsl:value-of select=&quot;$post/Request/tns:CheckUsername/tns:Password&quot;/>&lt;/tns1:password>&lt;/xsl:if>&lt;/tns1:parameters>&lt;/xsl:template>&lt;/xsl:stylesheet>"
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/CheckPrenotazione&quot; xmlns:tns1=&quot;http://www.example.org/ParamPrenotazione&quot; xmlns:tns2=&quot;http://www.example.org/CheckUsername&quot; xmlns:tns3=&quot;http://xmlns.example.com/PrenotazioneAuto/parameters&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;PrenotazioneAutoOrchestration-input&quot; match=&quot;/&quot;>&lt;tns1:InfoFlux>&lt;tns1:User>&lt;tns2:Username>&lt;xsl:value-of select=&quot;$post/Request/tns:CheckPrenotazione/tns:User/tns:Username&quot;/>&lt;/tns2:Username>&lt;tns2:Password>&lt;xsl:value-of select=&quot;$post/Request/tns:CheckPrenotazione/tns:User/tns:Password&quot;/>&lt;/tns2:Password>&lt;tns2:Category>&lt;xsl:value-of select=&quot;$post/parameters/tns3:prenotazioneautoPostParameters/tns3:id_car&quot;/>&lt;/tns2:Category>&lt;/tns1:User>&lt;tns1:RentFlux>&lt;xsl:if test=&quot;$post/Request/tns:CheckPrenotazione/tns:RentDate/tns:From_Date&quot;>&lt;tns:From_Date>&lt;xsl:value-of select=&quot;$post/Request/tns:CheckPrenotazione/tns:RentDate/tns:From_Date&quot;/>&lt;/tns:From_Date>&lt;/xsl:if>&lt;xsl:if test=&quot;$post/Request/tns:CheckPrenotazione/tns:RentDate/tns:To_Date&quot;>&lt;tns:To_Date>&lt;xsl:value-of select=&quot;$post/Request/tns:CheckPrenotazione/tns:RentDate/tns:To_Date&quot;/>&lt;/tns:To_Date>&lt;/xsl:if>&lt;/tns1:RentFlux>&lt;/tns1:InfoFlux>&lt;/xsl:template>&lt;/xsl:stylesheet>"
                                     expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
-                                    inputVariable="RicercaAutoOrchestration-input"
-                                    name="RicercaAutoOrchestration"
-                                    outputVariable="RicercaAutoOrchestration"
-                                    tibex:xpdlId="39845cb5-eaa2-4aa8-916c-d58c9f1fbad1"
+                                    inputVariable="PrenotazioneAutoOrchestration-input"
+                                    name="PrenotazioneAutoOrchestration"
+                                    outputVariable="PrenotazioneAutoOrchestration"
+                                    tibex:xpdlId="65483022-4a79-4b95-8d53-eb83289bc3a0"
                                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:targets>
-                                    <bpws:target linkName="LogToRicercaAutoOrchestration"/>
+                                    <bpws:target linkName="LogToPrenotazioneAutoOrchestration"/>
                                     </bpws:targets>
                                     <bpws:sources>
-                                    <bpws:source linkName="RicercaAutoOrchestrationTopostOut"/>
+                                    <bpws:source linkName="PrenotazioneAutoOrchestrationTopostOut"/>
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding coercion=""
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/CheckUsername&quot; xmlns:tns1=&quot;http://www.example.org/parameters&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.Request&quot;/>&#xa;    &lt;xsl:template name=&quot;RicercaAutoOrchestration-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns1:parameters>&#xa;            &lt;xsl:if test=&quot;$post.Request/tns:Username&quot;>&#xa;                &lt;tns1:username>&#xa;                    &lt;xsl:value-of select=&quot;$post.Request/tns:Username&quot;/>&#xa;                &lt;/tns1:username>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$post.Request/tns:Category&quot;>&#xa;                &lt;tns1:category>&#xa;                    &lt;xsl:value-of select=&quot;$post.Request/tns:Category&quot;/>&#xa;                &lt;/tns1:category>&#xa;            &lt;/xsl:if>&#xa;            &lt;xsl:if test=&quot;$post.Request/tns:Password&quot;>&#xa;                &lt;tns1:password>&#xa;                    &lt;xsl:value-of select=&quot;$post.Request/tns:Password&quot;/>&#xa;                &lt;/tns1:password>&#xa;            &lt;/xsl:if>&#xa;        &lt;/tns1:parameters>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/CheckPrenotazione&quot; xmlns:tns1=&quot;http://www.example.org/ParamPrenotazione&quot; xmlns:tns2=&quot;http://www.example.org/CheckUsername&quot; xmlns:tns3=&quot;http://xmlns.example.com/PrenotazioneAuto/parameters&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.Request&quot;/>&#xa;    &lt;xsl:param name=&quot;post.parameters&quot;/>&#xa;    &lt;xsl:template name=&quot;PrenotazioneAutoOrchestration-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns1:InfoFlux>&#xa;            &lt;tns1:User>&#xa;                &lt;tns2:Username>&#xa;                    &lt;xsl:value-of select=&quot;$post.Request/tns:User/tns:Username&quot;/>&#xa;                &lt;/tns2:Username>&#xa;                &lt;tns2:Password>&#xa;                    &lt;xsl:value-of select=&quot;$post.Request/tns:User/tns:Password&quot;/>&#xa;                &lt;/tns2:Password>&#xa;                &lt;tns2:Category>&#xa;                    &lt;xsl:value-of select=&quot;$post.parameters/tns3:id_car&quot;/>&#xa;                &lt;/tns2:Category>&#xa;            &lt;/tns1:User>&#xa;            &lt;tns1:RentFlux>&#xa;                &lt;xsl:if test=&quot;$post.Request/tns:RentDate/tns:From_Date&quot;>&#xa;                    &lt;tns:From_Date>&#xa;                        &lt;xsl:value-of select=&quot;$post.Request/tns:RentDate/tns:From_Date&quot;/>&#xa;                    &lt;/tns:From_Date>&#xa;                &lt;/xsl:if>&#xa;                &lt;xsl:if test=&quot;$post.Request/tns:RentDate/tns:To_Date&quot;>&#xa;                    &lt;tns:To_Date>&#xa;                        &lt;xsl:value-of select=&quot;$post.Request/tns:RentDate/tns:To_Date&quot;/>&#xa;                    &lt;/tns:To_Date>&#xa;                &lt;/xsl:if>&#xa;            &lt;/tns1:RentFlux>&#xa;        &lt;/tns1:InfoFlux>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
-                                    subProcessName="eserciziocampari.massimo.operation.RicercaAutoOrchestration" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                                    subProcessName="eserciziocampari.massimo.operation.PrenotazioneAutoOrchestration" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                                 </tibex:extActivity>
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
                                 <tibex:activityExtension
                                     inputVariable="Log1-input"
                                     name="Log1"
-                                    tibex:xpdlId="5a7ced85-2e99-4175-9576-db94f3ea9b0c" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                                    tibex:xpdlId="7069d08d-3826-4bd4-a515-d6057625bc0e" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:targets>
                                     <bpws:target linkName="postOutToLog1"/>
                                     </bpws:targets>
@@ -1574,7 +1588,7 @@
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns3=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log1-input&quot; match=&quot;/&quot;>&lt;tns3:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'EndMain'&quot;/>&lt;/message>&lt;/tns3:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.tibco.com/pe/WriteToLogActivitySchema&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;Log1-input&quot; match=&quot;/&quot;>&lt;tns5:ActivityInput>&lt;message>&lt;xsl:value-of select=&quot;'EndMainPA'&quot;/>&lt;/message>&lt;/tns5:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:config>
                                     <bwext:BWActivity

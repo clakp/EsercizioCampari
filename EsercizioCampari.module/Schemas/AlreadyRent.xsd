@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/AlreadyRent" xmlns:tns="http://www.example.org/AlreadyRent" elementFormDefault="qualified">
+
+    <element name="AlreadyRent" type="tns:AlreadyRentType"></element>
+    
+    <complexType name="AlreadyRentType">
+    	<sequence>
+    		<element name="NoRent" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>

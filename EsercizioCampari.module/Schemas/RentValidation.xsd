@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/RentValidation" xmlns:tns="http://www.example.org/RentValidation" elementFormDefault="qualified" xmlns:Q1="http://www.example.org/InvalidUser">
+
+    <import namespace="http://www.example.org/InvalidUser"></import>
+    <element name="RentValidation" type="tns:RentValidationType"></element>
+    
+    <complexType name="RentValidationType">
+    	<sequence>
+    		<element name="Username" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="Brand" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="Model" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="From_Date" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="To_Date" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="PriceADay" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="PriceTotal" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="InvalidUser" type="Q1:InvalidUserType" minOccurs="0" maxOccurs="1"></element>
+    		<element name="NoRent" type="string" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>

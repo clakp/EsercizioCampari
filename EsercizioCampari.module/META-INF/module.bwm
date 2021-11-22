@@ -38,6 +38,20 @@
     </scaext:binding>
     <scact:bindingAdjunct xmi:id="_mmgeoUlXEeybXbjxI5bUJA" bindingName="RestService1"/>
   </sca:service>
+    <sca:service xmi:id="_9U308EtwEeyXKN4w8Jm70A" name="prenotazioneauto" promote="ComponentPrenotazioneAuto/prenotazioneauto">
+    <sca:interface.wsdl xmi:id="_9U8GYEtwEeyXKN4w8Jm70A" interface="http://xmlns.example.com/20211122094826PLT#wsdl.interface(prenotazioneauto)" scaext:wsdlLocation="../Processes/eserciziocampari/massimo/main/PrenotazioneAuto.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_9VI6sEtwEeyXKN4w8Jm70A" name="RestService1" path="/rent/{id_car}" docBasePath="http://localhost:7777/EsercizioCampari.module" docResourcePath="PrenotazioneAuto" basePath="/" connector="eserciziocampari.module.RegistrazioneUtente" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/eserciziocampari.massimo.main.PrenotazioneAuto-PrenotazioneAuto.json">
+      <operation xmi:id="_9VLW8EtwEeyXKN4w8Jm70A" operationName="post" nickname="post-prenotazioneauto" httpMethod="POST" notes="postPrenotazioneAuto" responseStyle="element" requestStyle="element" outputPartName="Response">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_IzJ2IEtxEeyXKN4w8Jm70A">
+        <parameterMapping xmi:id="_IzJ2IUtxEeyXKN4w8Jm70A" parameterName="id_car" parameterType="Path" required="true"/>
+      </parameters>
+      <advancedConfig xmi:id="_9VI6sUtwEeyXKN4w8Jm70A" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_9VLW8UtwEeyXKN4w8Jm70A" bindingName="RestService1"/>
+  </sca:service>
   <sca:property xmi:id="_AXpF0EhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AX3IQEhlEeyYIa0FR7TYXA" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_AX7ZsEhlEeyYIa0FR7TYXA" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
@@ -63,6 +77,12 @@
     <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_mmDysUlXEeybXbjxI5bUJA" processName="claudia.main.StoricoPrenotazioniUtente"/>
     <sca:service xmi:id="_mmJSQElXEeybXbjxI5bUJA" name="storicoprenotazioniutente">
       <sca:interface.wsdl xmi:id="_mmKgYElXEeybXbjxI5bUJA" interface="http://xmlns.example.com/20211119174154PLT#wsdl.interface(storicoprenotazioniutente)" scaext:wsdlLocation="../Processes/eserciziocampari/module/StoricoPrenotazioniUtente.bwp"/>
+    </sca:service>
+  </sca:component>
+    <sca:component xmi:id="_9UuD8EtwEeyXKN4w8Jm70A" name="ComponentPrenotazioneAuto" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_9UuD8UtwEeyXKN4w8Jm70A" processName="eserciziocampari.massimo.main.PrenotazioneAuto"/>
+    <sca:service xmi:id="_9U1YsEtwEeyXKN4w8Jm70A" name="prenotazioneauto">
+      <sca:interface.wsdl xmi:id="_9U1_wEtwEeyXKN4w8Jm70A" interface="http://xmlns.example.com/20211122094826PLT#wsdl.interface(prenotazioneauto)" scaext:wsdlLocation="../Processes/eserciziocampari/massimo/main/PrenotazioneAuto.bwp"/>
     </sca:service>
   </sca:component>
 </sca:composite>
