@@ -1,0 +1,128 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "PrenotazioneAuto",
+    "description" : "PrenotazioneAuto service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/rent/{id_car}" : {
+      "post" : {
+        "summary" : "postPrenotazioneAuto",
+        "description" : "postPrenotazioneAuto",
+        "operationId" : "post-prenotazioneauto",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/CheckPrenotazione"
+          },
+          "required" : true
+        }, {
+          "name" : "id_car",
+          "in" : "path",
+          "description" : "",
+          "type" : "string",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RentValidation to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RentValidation"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "RentValidation" : {
+      "type" : "object",
+      "properties" : {
+        "Username" : {
+          "type" : "string"
+        },
+        "Brand" : {
+          "type" : "string"
+        },
+        "Model" : {
+          "type" : "string"
+        },
+        "From_Date" : {
+          "type" : "string"
+        },
+        "To_Date" : {
+          "type" : "string"
+        },
+        "PriceADay" : {
+          "type" : "string"
+        },
+        "PriceTotal" : {
+          "type" : "string"
+        },
+        "InvalidUser" : {
+          "$ref" : "#/definitions/InvalidUserType"
+        },
+        "NoRent" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RentDateType" : {
+      "type" : "object",
+      "properties" : {
+        "From_Date" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "To_Date" : {
+          "type" : "string",
+          "format" : "date"
+        }
+      }
+    },
+    "UserType" : {
+      "type" : "object",
+      "required" : [ "Username", "Password" ],
+      "properties" : {
+        "Username" : {
+          "type" : "string"
+        },
+        "Password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InvalidUserType" : {
+      "type" : "object",
+      "required" : [ "DenyAccess", "TryRegistration" ],
+      "properties" : {
+        "DenyAccess" : {
+          "type" : "string"
+        },
+        "TryRegistration" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CheckPrenotazione" : {
+      "type" : "object",
+      "required" : [ "User", "RentDate" ],
+      "properties" : {
+        "User" : {
+          "$ref" : "#/definitions/UserType"
+        },
+        "RentDate" : {
+          "$ref" : "#/definitions/RentDateType"
+        }
+      }
+    }
+  }
+}

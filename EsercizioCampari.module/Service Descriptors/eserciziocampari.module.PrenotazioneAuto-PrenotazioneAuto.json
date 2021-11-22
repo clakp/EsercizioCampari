@@ -1,0 +1,109 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "PrenotazioneAuto",
+    "description" : "PrenotazioneAuto service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/prenotazioneauto" : {
+      "post" : {
+        "summary" : "postPrenotazioneAuto",
+        "description" : "postPrenotazioneAuto",
+        "operationId" : "post-prenotazioneauto",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/CheckUsername"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ShowCars to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ShowCars"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "CheckUsername" : {
+      "type" : "object",
+      "properties" : {
+        "Username" : {
+          "type" : "string"
+        },
+        "Password" : {
+          "type" : "string"
+        },
+        "Category" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ShowCars" : {
+      "type" : "object",
+      "properties" : {
+        "ShopWindow" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ShopWindow",
+            "uniqueItems" : false
+          }
+        },
+        "NoAccess" : {
+          "$ref" : "#/definitions/InvalidUserType"
+        },
+        "NoMatching" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InvalidUserType" : {
+      "type" : "object",
+      "required" : [ "DenyAccess", "TryRegistration" ],
+      "properties" : {
+        "DenyAccess" : {
+          "type" : "string"
+        },
+        "TryRegistration" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ShopWindow" : {
+      "type" : "object",
+      "required" : [ "Brand", "Category", "Surcharge", "Optional", "Price", "Model" ],
+      "properties" : {
+        "Brand" : {
+          "type" : "string"
+        },
+        "Model" : {
+          "type" : "string"
+        },
+        "Category" : {
+          "type" : "string"
+        },
+        "Optional" : {
+          "type" : "string"
+        },
+        "Surcharge" : {
+          "type" : "string"
+        },
+        "Price" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

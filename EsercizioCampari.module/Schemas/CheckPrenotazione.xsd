@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/CheckPrenotazione" xmlns:tns="http://www.example.org/CheckPrenotazione" elementFormDefault="qualified">
+
+    <element name="CheckPrenotazione"
+    	type="tns:CheckPrenotazioneType">
+    </element>
+    
+    <complexType name="CheckPrenotazioneType">
+    	<sequence>
+    		<element name="User" type="tns:UserType"></element>
+    		<element name="RentDate" type="tns:RentDateType"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="UserType">
+    	<sequence>
+    		<element name="Username" type="string"></element>
+    		<element name="Password" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="RentDateType">
+    	<sequence>
+    		<element name="From_Date" type="date" minOccurs="0" maxOccurs="1"></element>
+    		<element name="To_Date" type="date" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>
