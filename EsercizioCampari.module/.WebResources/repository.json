@@ -20,6 +20,14 @@
         {
             "location": "Service Descriptors/eserciziocampari.massimo.main.RicercaAuto-RicercaAuto.json",
             "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/eserciziocampari.module.StoricoPrenotazioniUtente-StoricoPrenotazioniUtente.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/claudia.main.StoricoPrenotazioniUtente-StoricoPrenotazioniUtente.json",
+            "type": "generated"
         }
     ]
 }
